@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="CargoProjects">
+    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fdfd89d0-d3cb-43f2-b23d-74f1ba1a0666" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.cargo/config.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resource.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Resource.rc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/atl100_32.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/kiwoom_ctrl.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="qot5vjaf" />
+  </component>
+  <component name="ProjectId" id="1h570ds6j8NQQDzHdfYk84LWnqw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Taki\source\repos\new_bridge" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="run --package new_bridge --bin new_bridge" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fdfd89d0-d3cb-43f2-b23d-74f1ba1a0666" name="Default Changelist" comment="" />
+      <created>1599288878069</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599288878069</updated>
+      <workItem from="1599288884331" duration="4205000" />
+      <workItem from="1599297004331" duration="132000" />
+      <workItem from="1599297525303" duration="8801000" />
+      <workItem from="1599328492068" duration="100000" />
+      <workItem from="1599328869646" duration="77000" />
+      <workItem from="1599331241349" duration="4610000" />
+      <workItem from="1599476368804" duration="17139000" />
+      <workItem from="1599527484453" duration="23396000" />
+      <workItem from="1599569051648" duration="75001000" />
+      <workItem from="1599748080383" duration="1333000" />
+      <workItem from="1599755943353" duration="36540000" />
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="711" y="312" key="#Notifications" timestamp="1599822116775">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="711" y="312" key="#Notifications/0.0.1920.979@0.0.1920.979" timestamp="1599822116775" />
+    <state x="765" y="205" key="#com.intellij.ide.util.MemberChooser" timestamp="1599564496236">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="765" y="205" key="#com.intellij.ide.util.MemberChooser/0.0.1920.979@0.0.1920.979" timestamp="1599564496236" />
+    <state x="740" y="244" key="FileChooserDialogImpl" timestamp="1599822545285">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="740" y="244" key="FileChooserDialogImpl/0.0.1920.979@0.0.1920.979" timestamp="1599822545285" />
+    <state x="834" y="386" key="Github.ShareDialog" timestamp="1599822091304">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="834" y="386" key="Github.ShareDialog/0.0.1920.979@0.0.1920.979" timestamp="1599822091304" />
+    <state x="762" y="186" key="Github.UntrackedFilesDialog" timestamp="1599822103731">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="762" y="186" key="Github.UntrackedFilesDialog/0.0.1920.979@0.0.1920.979" timestamp="1599822103731" />
+    <state width="1877" height="188" key="GridCell.Tab.0.bottom" timestamp="1599822241840">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state width="1877" height="188" key="GridCell.Tab.0.bottom/0.0.1920.979@0.0.1920.979" timestamp="1599822241840" />
+    <state width="1877" height="188" key="GridCell.Tab.0.center" timestamp="1599822241840">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state width="1877" height="188" key="GridCell.Tab.0.center/0.0.1920.979@0.0.1920.979" timestamp="1599822241840" />
+    <state width="1877" height="188" key="GridCell.Tab.0.left" timestamp="1599822241840">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state width="1877" height="188" key="GridCell.Tab.0.left/0.0.1920.979@0.0.1920.979" timestamp="1599822241840" />
+    <state width="1877" height="188" key="GridCell.Tab.0.right" timestamp="1599822241840">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state width="1877" height="188" key="GridCell.Tab.0.right/0.0.1920.979@0.0.1920.979" timestamp="1599822241840" />
+    <state x="763" y="209" key="RollbackChangesDialog" timestamp="1599297987575">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="763" y="209" key="RollbackChangesDialog/0.0.1920.979@0.0.1920.979" timestamp="1599297987575" />
+    <state x="461" y="133" key="SettingsEditor" timestamp="1599822660125">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="461" y="133" key="SettingsEditor/0.0.1920.979@0.0.1920.979" timestamp="1599822660125" />
+    <state x="552" y="222" key="Vcs.Push.Dialog.v2" timestamp="1599822198011">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="552" y="222" key="Vcs.Push.Dialog.v2/0.0.1920.979@0.0.1920.979" timestamp="1599822198011" />
+    <state x="92" y="92" width="1736" height="795" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599677747129">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="92" y="92" width="1736" height="795" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.979@0.0.1920.979" timestamp="1599677747129" />
+    <state x="92" y="92" width="1736" height="795" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1599677747129">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="92" y="92" width="1736" height="795" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.0.1920.979@0.0.1920.979" timestamp="1599677747129" />
+  </component>
+</project>

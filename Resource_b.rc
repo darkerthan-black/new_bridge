@@ -1,0 +1,15 @@
+#include <windows.h>
+#include "Resource.h"
+
+/* Win32 application icon */
+//IDI_APPICON ICON                       "Application.ico"
+
+
+IDD_KHOPENAPITEST_DLG DIALOGEX 0, 0, 317, 50
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CONTROL | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Open API+ 주식샘플프로그램"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "종   료",IDCANCEL,262,26,50,18
+END
