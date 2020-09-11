@@ -12,7 +12,7 @@ dlopen_derive = "0.1.4"
 lazy_static = "1.4.0"
 invoke_wrap = {path = "C:/Users/Taki/source/repos/invoke_wrap"}
 wio = {git = "https://github.com/retep998/wio-rs.git"}
-
+guid = "0.1.0"
 
 
 [build-dependencies]

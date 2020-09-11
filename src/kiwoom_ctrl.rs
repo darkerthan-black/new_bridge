@@ -14,7 +14,7 @@ use winapi::um::oleauto::*;
 use winapi::um::unknwnbase::IUnknown;
 use winapi::um::winnt::LONG;
 use winapi::shared::windef::HWND;
-use winapi::shared::minwindef::{HMODULE, UINT, WPARAM, LPARAM, LRESULT, LOWORD};
+use winapi::shared::minwindef::{HMODULE, UINT, WPARAM, LPARAM, LRESULT, LOWORD, DWORD};
 use winapi::um::libloaderapi::GetModuleHandleW;
 use winapi::_core::ptr::null_mut;
 use winapi::um::winuser::{CreateDialogParamW, MAKEINTRESOURCEW, DefWindowProcW, WM_INITDIALOG, DefDlgProcW, DestroyWindow, PostQuitMessage, IDCANCEL, EndDialog};
@@ -28,8 +28,16 @@ use winapi::shared::ntdef::*;
 use winapi::um::errhandlingapi::GetLastError;
 use std::sync::Mutex;
 use winapi::shared::wtypes::*;
+use winapi::RIDL;
+use crate::ocidl::{IConnectionPoint, IConnectionPointContainer};
+// use guid::GUID;
+
 
 // use std::option::Option::None;
+
+const IID_ICONNECTIONPOINT: guid::GUID = guid! {"B196B286-BAB4-101A-B69C-00AA00341D07"};
+const IID_ICONNECTIONPOINT_CONTAINER: guid::GUID = guid! {"B196B284-BAB4-101A-B69C-00AA00341D07"};
+const IID_IENUMCONNECTIONS: guid::GUID = guid! {"B196B285-BAB4-101A-B69C-00AA00341D07"};
 
 
 const IDD_KHOPENAPITEST_DLG:u16  =         1000;
@@ -42,16 +50,16 @@ pub struct Kiwoom {
     com_container:ComPtr<IUnknown>,
     // com_skcontrol:ComPtr<IUnknown>,
     // com_kisink:ComPtr<IDispatch>,
+    com_dkh_ev:ComPtr<IConnectionPoint>,
     hwnd: HWND,
     con:Container<AtlApi>,
+    com_dw_cookie: *mut DWORD,
 }
 
 impl Kiwoom {
     //다이얼로그를 생성하고, 키움 컨트롤을 얹는다.
-    pub unsafe  fn new(  hwnd:HWND )-> Option<Kiwoom> {
-
-
-        let hins: HMODULE =  GetModuleHandleW(null_mut());
+    pub unsafe fn new(hwnd: HWND) -> Option<Kiwoom> {
+        let hins: HMODULE = GetModuleHandleW(null_mut());
 
 
         // let h_container = CreateDialogParamW(
@@ -60,22 +68,20 @@ impl Kiwoom {
         //     hwnd, Some(ch_wnd_proc),  0);
 
 
-        let kw_proid= rust_to_win_str("KHOPENAPI.KHOpenAPICtrl.1");
+        let kw_proid = rust_to_win_str("KHOPENAPI.KHOpenAPICtrl.1");
 
 
-        let con:Container<AtlApi> =  Container::load("atl100_32.dll").expect("atl 로딩실패");
+        let con: Container<AtlApi> = Container::load("atl100_32.dll").expect("atl 로딩실패");
 
 
         let mut h_result = con.AtlAxWinInit();
 
 
-
-
-
-        let siid:LPIID = &mut zeroed::<GUID>();
+        let siid: LPIID = &mut zeroed::<GUID>();
 
         let mut retsink = IIDFromString(
-            rust_to_win_str("{7335F12D-8973-4BD5-B7F0-12DF03D175B7}").as_ptr(),
+            rust_to_win_str("{7335F12D-8973-4BD5-B7F0-12DF03D175B7}").as_ptr(),//키움 이벤트
+            // rust_to_win_str("{B196B284-BAB4-101A-B69C-00AA00341D07}").as_ptr(),//윈도우 api
             siid
         );
 
@@ -84,7 +90,10 @@ impl Kiwoom {
         let mut pp_unk_control: *mut IUnknown = zeroed();
         let mut p_kh_interface: *mut IDispatch = zeroed();
         let mut p_sk_control: *mut IUnknown = zeroed();
-        let mut p_kh_sink: *mut IUnknown = zeroed();
+        let mut p_kh_sink: *mut IConnectionPoint = zeroed();
+        let mut p_connect_contain: *mut IConnectionPointContainer = zeroed();
+
+        let mut dw_cookie: DWORD = 0;
 
 
         h_result = con.AtlAxCreateControlEx(
@@ -92,10 +101,11 @@ impl Kiwoom {
             <*mut *mut IUnknown>::cast(&mut pp_unk_container),
             <*mut *mut IUnknown>::cast(&mut pp_unk_control),
             siid,
-            <*mut IUnknown>::cast(p_kh_sink),
+            // <*mut IUnknown>::cast(p_sk_control),
+            null_mut(),
         );
 
-        println!(" 싱크 포인터 {}", p_kh_sink.is_null());
+        // println!(" 싱크 포인터 {}", p_sk_control.is_null());
 
         // h_result = con.AtlAxCreateControl(
         //     kw_proid.as_ptr(), hwnd, null_mut(),
@@ -110,10 +120,8 @@ impl Kiwoom {
 
 
             if SUCCEEDED(h_result) {
-
                 let riid: LPIID = &mut zeroed::<GUID>();
                 // let mut riid:LPIID =  std::ptr::null_mut::<GUID>();
-
 
 
                 let mut retval = IIDFromString(
@@ -123,13 +131,34 @@ impl Kiwoom {
 
 
                 h_result = (*pp_unk_control).QueryInterface(
-                    riid, &mut p_kh_interface as * mut *mut  IDispatch as * mut *mut c_void);
+                    riid, &mut p_kh_interface as *mut *mut IDispatch as *mut *mut c_void);
 
-                if FAILED(h_result) { println!("키움 인터페이스 실패") ;None } else {
+
+                if FAILED(h_result) {
+                    println!("키움 인터페이스 실패");
+                    None
+                } else {
+                    let mut retval = IIDFromString(
+                        rust_to_win_str("{B196B284-BAB4-101A-B69C-00AA00341D07}").as_ptr(),
+                        riid
+                    );//IConnectionPointContainer guid
+
+                    h_result = (*pp_unk_control).QueryInterface(
+                        riid,
+                        &mut p_connect_contain as *mut *mut IConnectionPointContainer as *mut *mut c_void);
+
+                    let mut retval = IIDFromString(
+                        rust_to_win_str("{7335F12D-8973-4BD5-B7F0-12DF03D175B7}").as_ptr(),
+                        riid
+                    );
+
+                    println!("커넥션 포인트 {} {}", p_connect_contain.is_null(), h_result);
+
+                    h_result = (*p_connect_contain).FindConnectionPoint(
+                        riid, &mut p_kh_sink as *mut *mut IConnectionPoint);
 
 
                     // let mut h_result = con.AtlAxWinInit();
-
 
 
                     // h_result = con.AtlAxGetControl(
@@ -139,74 +168,71 @@ impl Kiwoom {
                         println!("싱크 콘트롤 겟 실패 {}", GetLastError());
                     }
 
+                    h_result = (*p_kh_sink).Advise(p_kh_interface as *mut IUnknown, &mut dw_cookie);
+
 
                     // h_result = (*p_sk_control).QueryInterface(
                     //     siid, &mut p_kh_sink as * mut *mut  IDispatch as * mut *mut c_void);
 
 
-
                     if SUCCEEDED(h_result) {
+                        (*p_connect_contain).Release();
 
                         Some(Kiwoom {
-                            con:con,
+                            con: con,
                             hwnd: hwnd,
                             com_container: ComPtr::new(pp_unk_container).unwrap(),
                             com_control: ComPtr::new(pp_unk_control).unwrap(),
                             comp_kiwoom: ComPtr::new(p_kh_interface).unwrap(),
                             // com_skcontrol: ComPtr::new(p_sk_control).unwrap(),
                             // com_kisink:ComPtr::new(p_kh_sink).unwrap(),
+                            com_dkh_ev: ComPtr::new(p_kh_sink).unwrap(),
+                            com_dw_cookie: &mut dw_cookie,
                         })
                     } else {
-                        println!("키움 싱크 콘트롤 실패 {}, {}", GetLastError(), h_result); None
+                        println!("키움 싱크 콘트롤 실패 {}, {}", GetLastError(), h_result);
+                        None
                     }
-
-
                 }
-
-            } else { println!("키움 겟 콘트롤 실패"); None }
-
-        } else { println!("키움 크리에이트 실패"); None }
-
-
-
-
+            } else {
+                println!("키움 겟 콘트롤 실패");
+                None
+            }
+        } else {
+            println!("키움 크리에이트 실패");
+            None
+        }
     }
     pub fn comm_connect(&self) -> LONG {
-
         invoke_wrap!( self.comp_kiwoom, 0x1, DISPATCH_METHOD, VT_I4, 0 )
     }
 
-    fn CommRqData( &self, sRQName:&mut BSTR,
-                   sTrCode:&mut BSTR,
-                   nPrevNext:&mut LONG,
-                   sScreenNo:&mut BSTR) ->LONG {
-
+    fn CommRqData(&self, sRQName: &mut BSTR,
+                  sTrCode: &mut BSTR,
+                  nPrevNext: &mut LONG,
+                  sScreenNo: &mut BSTR) -> LONG {
         invoke_wrap!(self.comp_kiwoom, 0x3, DISPATCH_METHOD, VT_I4, 4,
                     sRQName,VT_BSTR,
                    sTrCode,VT_BSTR,
                    nPrevNext,VT_I4,
                    sScreenNo,VT_BSTR )
-
     }
-//
-    fn GetLoginInfo( &self,sTag:&mut BSTR) -> BSTR {
-
+    //
+    pub fn GetLoginInfo(&self, sTag: &mut BSTR) -> BSTR {
         invoke_wrap!(self.comp_kiwoom, 0x4, DISPATCH_METHOD, VT_BSTR, 1,
                     sTag,VT_BSTR )
+    }
 
-}
-
-    fn SendOrder( &self,
-        sRQName:&mut BSTR,
-        sScreenNo:&mut BSTR,
-        sAccNo:&mut BSTR,
-        nOrderType:&mut LONG,
-        sCode:&mut BSTR,
-        nQty:&mut LONG,
-        nPrice:&mut LONG,
-        sHogaGb:&mut BSTR,
-        sOrgOrderNo:&mut BSTR)->LONG {
-
+    fn SendOrder(&self,
+                 sRQName: &mut BSTR,
+                 sScreenNo: &mut BSTR,
+                 sAccNo: &mut BSTR,
+                 nOrderType: &mut LONG,
+                 sCode: &mut BSTR,
+                 nQty: &mut LONG,
+                 nPrice: &mut LONG,
+                 sHogaGb: &mut BSTR,
+                 sOrgOrderNo: &mut BSTR) -> LONG {
         invoke_wrap!(self.comp_kiwoom, 0x5, DISPATCH_METHOD, VT_I4, 9,
                             sRQName,VT_BSTR,
                             sScreenNo,VT_BSTR,
@@ -219,18 +245,17 @@ impl Kiwoom {
                             sOrgOrderNo,VT_BSTR )
     }
 
-    fn SendOrderFO( &self,
-        sRQName:&mut BSTR,
-        sScreenNo:&mut BSTR,
-        sAccNo:&mut BSTR,
-        sCode:&mut BSTR,
-        lOrdKind:&mut LONG,
-        sSlbyTp:&mut BSTR,
-        sOrdTp:&mut BSTR,
-        lQty:&mut LONG,
-        sPrice:&mut BSTR,
-        sOrgOrdNo:&mut BSTR) ->LONG {
-
+    fn SendOrderFO(&self,
+                   sRQName: &mut BSTR,
+                   sScreenNo: &mut BSTR,
+                   sAccNo: &mut BSTR,
+                   sCode: &mut BSTR,
+                   lOrdKind: &mut LONG,
+                   sSlbyTp: &mut BSTR,
+                   sOrdTp: &mut BSTR,
+                   lQty: &mut LONG,
+                   sPrice: &mut BSTR,
+                   sOrgOrdNo: &mut BSTR) -> LONG {
         invoke_wrap!(self.comp_kiwoom, 0x6, DISPATCH_METHOD, VT_I4, 10,
                     sRQName,VT_BSTR,
                     sScreenNo,VT_BSTR,
@@ -244,28 +269,25 @@ impl Kiwoom {
                     sOrgOrdNo,VT_BSTR )
     }
 
-    fn SetInputValue( &self,
-        sID:&mut BSTR,
-        sValue:&mut BSTR) {
-
+    fn SetInputValue(&self,
+                     sID: &mut BSTR,
+                     sValue: &mut BSTR) {
         invoke_wrap!(self.comp_kiwoom, 0x7, DISPATCH_METHOD, VOID, 2,
                             sID,VT_BSTR,
                             sValue,VT_BSTR );
     }
 
-    fn SetOutputFID( &self, sID:&mut BSTR)->LONG {
-
+    fn SetOutputFID(&self, sID: &mut BSTR) -> LONG {
         invoke_wrap!(self.comp_kiwoom, 0x8, DISPATCH_METHOD, VT_I4, 1,
                     sID,VT_BSTR )
     }
 
-    fn CommGetData( &self,
-        sJongmokCode:&mut BSTR,
-        sRealType:&mut BSTR,
-        sFieldName:&mut BSTR,
-        nIndex:&mut LONG,
-        sInnerFieldName:&mut BSTR)-> BSTR {
-
+    fn CommGetData(&self,
+                   sJongmokCode: &mut BSTR,
+                   sRealType: &mut BSTR,
+                   sFieldName: &mut BSTR,
+                   nIndex: &mut LONG,
+                   sInnerFieldName: &mut BSTR) -> BSTR {
         invoke_wrap!(self.comp_kiwoom, 0x9, DISPATCH_METHOD, VT_BSTR, 5,
                     sJongmokCode,VT_BSTR,
                     sRealType,VT_BSTR,
@@ -274,16 +296,14 @@ impl Kiwoom {
                     sInnerFieldName,VT_BSTR)
     }
 
-    fn DisconnectRealData( &self, sScnNo:&mut BSTR){
-
+    fn DisconnectRealData(&self, sScnNo: &mut BSTR) {
         invoke_wrap!(self.comp_kiwoom, 0xa, DISPATCH_METHOD, VOID, 1,
                     sScnNo,VT_BSTR );
     }
 
-    fn GetRepeatCnt( &self,
-        sTrCode:&mut BSTR,
-        sRecordName:&mut BSTR)->LONG {
-
+    fn GetRepeatCnt(&self,
+                    sTrCode: &mut BSTR,
+                    sRecordName: &mut BSTR) -> LONG {
         invoke_wrap!(self.comp_kiwoom, 0xb, DISPATCH_METHOD, VT_I4, 2,
                     sTrCode,VT_BSTR,
                     sRecordName,VT_BSTR )
@@ -633,7 +653,10 @@ impl Kiwoom {
 //         invoke_wrap!(self.comp_kiwoom, 0x3a, DISPATCH_METHOD, VT_BSTR, 1,
 //                     sTag,VT_BSTR )
 // }
-//
+}
+
+
+
 // ////////////////////////////////////
 // ///Event  메써드
 // /////////////////////////////////////
@@ -713,7 +736,60 @@ impl Kiwoom {
 // }
 
 
-}
+//
+// RIDL!{#[uuid(0x7335f12d,0x8973,0x4bd5,0xb7,0xf0,0x12,0xdf,0x3,0xd1,0x75,0xb7)]
+// interface _DKHOpenAPIEvents(_DKHOpenAPIEventsVtbl): IDispatch(IDispatchVtbl){
+//
+//             fn OnReceiveTrData(
+//                             sScrNo:BSTR ,
+//                              sRQName:BSTR ,
+//                              sTrCode:BSTR ,
+//                              sRecordName:BSTR ,
+//                              sPrevNext:BSTR ,
+//                              nDataLength:LONG,
+//                              sErrorCode:BSTR ,
+//                              sMessage:BSTR ,
+//                              sSplmMsg:BSTR,  )->(),
+//
+//             fn OnReceiveRealData(
+//                              sRealKey:BSTR ,
+//                              sRealType:BSTR ,
+//                              sRealData:BSTR,  )->(),
+//
+//             fn OnReceiveMsg(
+//                              sScrNo:BSTR ,
+//                              sRQName:BSTR ,
+//                              sTrCode:BSTR ,
+//                              sMsg:BSTR,  )->(),
+//
+//             fn OnReceiveChejanData(
+//                              sGubun:BSTR ,
+//                              nItemCnt:LONG,
+//                              sFIdList:BSTR,  )->(),
+//
+//             fn OnEventConnect(nErrCode:LONG, )->(),
+//
+//             fn OnReceiveInvestRealData(sRealKey:BSTR,  )->(),
+//
+//             fn OnReceiveRealCondition(
+//                              sTrCode:BSTR ,
+//                              strType:BSTR ,
+//                              strConditionName:BSTR ,
+//                              strConditionIndex:BSTR,  )->(),
+//
+//             fn OnReceiveTrCondition(
+//                              sScrNo:BSTR ,
+//                              strCodeList:BSTR ,
+//                              strConditionName:BSTR ,
+//                              nIndex:INT,
+//                              nNext:INT, )->(),
+//
+//             fn OnReceiveConditionVer(
+//                              lRet:LONG,
+//                              sMsg:BSTR,  )->(),
+//
+//
+// } }
 
 /****
 

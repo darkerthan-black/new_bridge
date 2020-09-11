@@ -7,8 +7,10 @@ extern crate wio;
 
 
 pub mod kiwoom_ctrl;
+pub mod ocidl;
 
-
+#[macro_use]
+extern crate guid;
 
 #[macro_use]
 extern crate dlopen_derive;
@@ -44,6 +46,12 @@ use winapi::_core::mem;
 use winapi::um::libloaderapi::GetModuleHandleW;
 use winapi::um::winuser::*;
 use winapi::shared::guiddef::REFIID;
+use guid::GUID;
+
+
+
+
+
 
 #[derive(WrapperApi)]
 struct AtlApi {
@@ -57,6 +65,8 @@ struct AtlApi {
                          ppControl: *mut *mut IUnknown, iidSink: REFIID, pSink: *mut IUnknown   )->HRESULT,
     AtlAxGetControl:unsafe extern "stdcall" fn(h: HWND, pp: *mut *mut IUnknown)->HRESULT,
 }
+
+
 
 
 
@@ -216,9 +226,12 @@ pub fn show_window() {
 
     unsafe { SHARED_KIWOOM.as_ref().unwrap().comm_connect(); }
 
+    // unsafe { SHARED_KIWOOM.as_ref().unwrap().GetLoginInfo("ACCOUNT"); }
+
     // kiwoom.comm_connect();
 
     // KIWOOM.lock().unwrap().comm_connect();
+
 
 
 
