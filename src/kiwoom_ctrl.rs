@@ -30,7 +30,7 @@ use std::sync::Mutex;
 use winapi::shared::wtypes::*;
 use winapi::RIDL;
 use crate::ocidl::{IConnectionPoint, IConnectionPointContainer};//  AtlAxCreateControlEx  사용시 불필요
-use crate::event::*;
+
 // use com::sys::CoCreateInstance;
 use winapi::shared::wtypesbase::{CLSCTX_LOCAL_SERVER, CLSCTX_INPROC_SERVER};
 use winapi::um::objbase::{CoInitialize, COINIT_APARTMENTTHREADED};
