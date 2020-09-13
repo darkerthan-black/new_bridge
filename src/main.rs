@@ -82,7 +82,6 @@ const IDD_KHOPENAPITEST_DLG:u16  =         1000;
 // const IDC_KHOPENAPICTRL1:u16     =         1011;
 
 
-
 fn main() {
 
 

@@ -13,7 +13,8 @@ lazy_static = "1.4.0"
 invoke_wrap = {path = "C:/Users/Taki/source/repos/invoke_wrap"}
 wio = {git = "https://github.com/retep998/wio-rs.git"}
 guid = "0.1.0"
-
+#com = {git = "https://github.com/microsoft/com-rs.git"}
+com = "0.2"
 
 [build-dependencies]
 embed-resource = "1.3.3"

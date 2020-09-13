@@ -8,9 +8,12 @@ extern crate wio;
 
 pub mod kiwoom_ctrl;
 pub mod ocidl;
+pub mod dk_event;
+mod event;
+mod event_handle;
 
-#[macro_use]
-extern crate guid;
+// #[macro_use]
+// extern crate guid;
 
 #[macro_use]
 extern crate dlopen_derive;
@@ -46,10 +49,15 @@ use winapi::_core::mem;
 use winapi::um::libloaderapi::GetModuleHandleW;
 use winapi::um::winuser::*;
 use winapi::shared::guiddef::REFIID;
-use guid::GUID;
+// use guid::GUID;
 
-
-
+//
+// #[macro_use]
+// extern crate guid;
+// use guid::GUID;
+// //
+// const MY_GUID: GUID = guid!{"3a00a55e-f50d-11ea-adc1-0242ac120002"};//3DED3F5C_22B7_443A_9561_7B54B917ACA4
+// const MY_GUID: GUID = guid!{"3DED3F5C-22B7-443A-9561-7B54B917ACA4"};
 
 
 
@@ -226,6 +234,8 @@ pub fn show_window() {
 
     unsafe { SHARED_KIWOOM.as_ref().unwrap().comm_connect(); }
 
+    // unsafe { SHARED_KIWOOM.as_ref().unwrap(). }
+
     // unsafe { SHARED_KIWOOM.as_ref().unwrap().GetLoginInfo("ACCOUNT"); }
 
     // kiwoom.comm_connect();
@@ -235,6 +245,15 @@ pub fn show_window() {
 
 
 
+    // println!( " {:?}", MY_GUID);
+
+
+    // println!("{:#x}, {:#x}. {:#x}, {:#x?}",973120862, 62733,  4586,  [173, 193, 2, 66, 172, 18, 0, 2] );
+    // 0x120B729F,0x65BF,0x11D0,0x9D,0xDC,0x00,0xA0,0xC9,0x03,0x48,0x92
+
+
+    // println!("{:#x}, {:#x}. {:#x}, {:#x?}",1038958428, 8887,17466, [149, 97, 123, 84, 185, 23, 172, 164]  );
+    // 0x3ded3f5c, 0x22b7. 0x443a,0x95,0x61, 0x7b, 0x54, 0xb9, 0x17, 0xac, 0xa4,
 
 
     // let c_hwnd = vec![h_container];

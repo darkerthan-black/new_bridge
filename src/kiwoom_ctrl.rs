@@ -21,23 +21,32 @@ use winapi::um::winuser::{CreateDialogParamW, MAKEINTRESOURCEW, DefWindowProcW, 
 use wio::bstr::BStr;
 use winapi::_core::mem::zeroed;
 use winapi::shared::winerror::{SUCCEEDED, FAILED};
-use winapi::shared::guiddef::{LPIID, GUID, IID_NULL, REFIID};
-use winapi::um::combaseapi::IIDFromString;
+use winapi::shared::guiddef::{LPIID, GUID, IID_NULL, REFIID, IID};
+use winapi::um::combaseapi::{IIDFromString, CLSCTX_SERVER, CoCreateInstance, CoInitializeEx};
 use winapi::ctypes::c_void;
 use winapi::shared::ntdef::*;
 use winapi::um::errhandlingapi::GetLastError;
 use std::sync::Mutex;
 use winapi::shared::wtypes::*;
 use winapi::RIDL;
-use crate::ocidl::{IConnectionPoint, IConnectionPointContainer};
+use crate::ocidl::{IConnectionPoint, IConnectionPointContainer};//  AtlAxCreateControlEx  사용시 불필요
+use crate::event::*;
+// use com::sys::CoCreateInstance;
+use winapi::shared::wtypesbase::{CLSCTX_LOCAL_SERVER, CLSCTX_INPROC_SERVER};
+use winapi::um::objbase::{CoInitialize, COINIT_APARTMENTTHREADED};
+use crate::event_handle::EventHandle;
 // use guid::GUID;
+
 
 
 // use std::option::Option::None;
 
-const IID_ICONNECTIONPOINT: guid::GUID = guid! {"B196B286-BAB4-101A-B69C-00AA00341D07"};
-const IID_ICONNECTIONPOINT_CONTAINER: guid::GUID = guid! {"B196B284-BAB4-101A-B69C-00AA00341D07"};
-const IID_IENUMCONNECTIONS: guid::GUID = guid! {"B196B285-BAB4-101A-B69C-00AA00341D07"};
+// const IID_ICONNECTIONPOINT: guid::GUID = guid! {"B196B286-BAB4-101A-B69C-00AA00341D07"};
+// const IID_ICONNECTIONPOINT_CONTAINER: guid::GUID = guid! {"B196B284-BAB4-101A-B69C-00AA00341D07"};
+// const IID_IENUMCONNECTIONS: guid::GUID = guid! {"B196B285-BAB4-101A-B69C-00AA00341D07"};
+
+//pub static IID_IUNKNOWN: &'static str = "00000000-0000-0000-C000-000000000046";
+// const IID_IUNKNOWN:GUID = GUID { Data1:0x00000000, Data2: 0x0000, Data3:0x0000, Data4:[0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46]};
 
 
 const IDD_KHOPENAPITEST_DLG:u16  =         1000;
@@ -48,9 +57,7 @@ pub struct Kiwoom {
     comp_kiwoom:ComPtr<IDispatch>,
     com_control:ComPtr<IUnknown>,
     com_container:ComPtr<IUnknown>,
-    // com_skcontrol:ComPtr<IUnknown>,
-    // com_kisink:ComPtr<IDispatch>,
-    com_dkh_ev:ComPtr<IConnectionPoint>,
+    com_dkh_ev:ComPtr<IUnknown>,
     hwnd: HWND,
     con:Container<AtlApi>,
     com_dw_cookie: *mut DWORD,
@@ -80,8 +87,9 @@ impl Kiwoom {
         let siid: LPIID = &mut zeroed::<GUID>();
 
         let mut retsink = IIDFromString(
+            // rust_to_win_str("{A1574A0D-6BFA-4BD7-9020-DED88711818D}").as_ptr(),//키움 클래스
             rust_to_win_str("{7335F12D-8973-4BD5-B7F0-12DF03D175B7}").as_ptr(),//키움 이벤트
-            // rust_to_win_str("{B196B284-BAB4-101A-B69C-00AA00341D07}").as_ptr(),//윈도우 api
+
             siid
         );
 
@@ -89,119 +97,113 @@ impl Kiwoom {
         let mut pp_unk_container: *mut IUnknown = zeroed();
         let mut pp_unk_control: *mut IUnknown = zeroed();
         let mut p_kh_interface: *mut IDispatch = zeroed();
-        let mut p_sk_control: *mut IUnknown = zeroed();
-        let mut p_kh_sink: *mut IConnectionPoint = zeroed();
-        let mut p_connect_contain: *mut IConnectionPointContainer = zeroed();
+
+
+
+
+        // let mut p_sk_control: *mut IUnknown = zeroed();
+        // let mut p_dkh_event: * mut DKHEvent
+        // CoInitializeEx(null_mut(), COINIT_APARTMENTTHREADED);
+
+        // h_result = CoCreateInstance(siid as *const IID,
+        //                             null_mut(), CLSCTX_INPROC_SERVER, &IID_IUNKNOWN,
+        //                             p_sk_control as *mut *mut c_void);
+
+        // if FAILED(h_result) { println!("싱크 인스턴스 실패 {} {}", GetLastError(), h_result); }
+
+
+
+        //키움 이벤트를 처리할 com 객체 생성
+        let mut event = EventHandle::new();
 
         let mut dw_cookie: DWORD = 0;
+        let p_event: *mut EventHandle = Box::into_raw(event);// 이벤트와 싱크할 포인터
 
 
         h_result = con.AtlAxCreateControlEx(
             kw_proid.as_ptr(), hwnd, null_mut(),
             <*mut *mut IUnknown>::cast(&mut pp_unk_container),
             <*mut *mut IUnknown>::cast(&mut pp_unk_control),
+            // &IID_NULL,
             siid,
-            // <*mut IUnknown>::cast(p_sk_control),
-            null_mut(),
+            <*mut IUnknown>::cast(p_event as *mut IUnknown),
+            // null_mut(),
         );
 
-        // println!(" 싱크 포인터 {}", p_sk_control.is_null());
-
+        //
+        //  AtlAxCreateControlEx 로 아래의 두 함수가 하는 일을 한번에 처리 가능.
+        //
         // h_result = con.AtlAxCreateControl(
         //     kw_proid.as_ptr(), hwnd, null_mut(),
         //     <*mut *mut IUnknown>::cast(&mut pp_unk_container) );
 
+
+        // h_result = con.AtlAxGetControl(
+        //     hwnd,
+        //     <*mut *mut IUnknown>::cast(&mut pp_unk_control));
+
+
+        let riid: LPIID = &mut zeroed::<GUID>();
+
+        let mut retval = IIDFromString(
+            rust_to_win_str("{CF20FBB6-EDD4-4BE5-A473-FEF91977DEB6}").as_ptr(),
+            riid
+        );//키움 디스인터페이스
+
+
+        h_result = (*pp_unk_control).QueryInterface(
+            riid, &mut p_kh_interface as *mut *mut IDispatch as *mut *mut c_void);
+
+
+        //
+        //   AtlAxCreateContorlEx 사용시 한번에 sink 클래스까지 등록하는 경우 아래 iConnectionPoint 관련 코드는 불필요하다.
+        //
+
+
+        // let mut p_kh_sink: *mut IConnectionPoint = zeroed();
+        // let mut p_connect_contain: *mut IConnectionPointContainer = zeroed();
+        //
+        // let mut retval = IIDFromString(
+        //     rust_to_win_str("{B196B284-BAB4-101A-B69C-00AA00341D07}").as_ptr(),
+        //     riid
+        // );//IConnectionPointContainer guid
+        //
+        // h_result = (*pp_unk_control).QueryInterface(
+        //     riid,
+        //     &mut p_connect_contain as *mut *mut IConnectionPointContainer as *mut *mut c_void);
+        //
+        // let mut retval = IIDFromString(
+        //     rust_to_win_str("{7335F12D-8973-4BD5-B7F0-12DF03D175B7}").as_ptr(),
+        //     riid
+        // );//키움 이벤트 인터페이스
+        //
+        //
+        //
+        // h_result = (*p_connect_contain).FindConnectionPoint(
+        //     riid, &mut p_kh_sink as *mut *mut IConnectionPoint);
+        //
+        // h_result = (*p_kh_sink).Advise(  p_event as *mut IUnknown, &mut dw_cookie);
+        //
+        // (*p_connect_contain).Release();
+
+
+
         if SUCCEEDED(h_result) {
 
-
-            // h_result = con.AtlAxGetControl(
-            //     hwnd,
-            //     <*mut *mut IUnknown>::cast(&mut pp_unk_control));
-
-
-            if SUCCEEDED(h_result) {
-                let riid: LPIID = &mut zeroed::<GUID>();
-                // let mut riid:LPIID =  std::ptr::null_mut::<GUID>();
-
-
-                let mut retval = IIDFromString(
-                    rust_to_win_str("{CF20FBB6-EDD4-4BE5-A473-FEF91977DEB6}").as_ptr(),
-                    riid
-                );
-
-
-                h_result = (*pp_unk_control).QueryInterface(
-                    riid, &mut p_kh_interface as *mut *mut IDispatch as *mut *mut c_void);
-
-
-                if FAILED(h_result) {
-                    println!("키움 인터페이스 실패");
-                    None
-                } else {
-                    let mut retval = IIDFromString(
-                        rust_to_win_str("{B196B284-BAB4-101A-B69C-00AA00341D07}").as_ptr(),
-                        riid
-                    );//IConnectionPointContainer guid
-
-                    h_result = (*pp_unk_control).QueryInterface(
-                        riid,
-                        &mut p_connect_contain as *mut *mut IConnectionPointContainer as *mut *mut c_void);
-
-                    let mut retval = IIDFromString(
-                        rust_to_win_str("{7335F12D-8973-4BD5-B7F0-12DF03D175B7}").as_ptr(),
-                        riid
-                    );
-
-                    println!("커넥션 포인트 {} {}", p_connect_contain.is_null(), h_result);
-
-                    h_result = (*p_connect_contain).FindConnectionPoint(
-                        riid, &mut p_kh_sink as *mut *mut IConnectionPoint);
-
-
-                    // let mut h_result = con.AtlAxWinInit();
-
-
-                    // h_result = con.AtlAxGetControl(
-                    //     hwnd,
-                    //     <*mut *mut IUnknown>::cast(&mut p_sk_control));
-                    if FAILED(h_result) {
-                        println!("싱크 콘트롤 겟 실패 {}", GetLastError());
-                    }
-
-                    h_result = (*p_kh_sink).Advise(p_kh_interface as *mut IUnknown, &mut dw_cookie);
-
-
-                    // h_result = (*p_sk_control).QueryInterface(
-                    //     siid, &mut p_kh_sink as * mut *mut  IDispatch as * mut *mut c_void);
-
-
-                    if SUCCEEDED(h_result) {
-                        (*p_connect_contain).Release();
-
-                        Some(Kiwoom {
-                            con: con,
-                            hwnd: hwnd,
-                            com_container: ComPtr::new(pp_unk_container).unwrap(),
-                            com_control: ComPtr::new(pp_unk_control).unwrap(),
-                            comp_kiwoom: ComPtr::new(p_kh_interface).unwrap(),
-                            // com_skcontrol: ComPtr::new(p_sk_control).unwrap(),
-                            // com_kisink:ComPtr::new(p_kh_sink).unwrap(),
-                            com_dkh_ev: ComPtr::new(p_kh_sink).unwrap(),
-                            com_dw_cookie: &mut dw_cookie,
-                        })
-                    } else {
-                        println!("키움 싱크 콘트롤 실패 {}, {}", GetLastError(), h_result);
-                        None
-                    }
-                }
-            } else {
-                println!("키움 겟 콘트롤 실패");
-                None
-            }
+            Some(Kiwoom {
+                con: con,
+                hwnd: hwnd,
+                com_container: ComPtr::new(pp_unk_container).unwrap(),
+                com_control: ComPtr::new(pp_unk_control).unwrap(),
+                comp_kiwoom: ComPtr::new(p_kh_interface).unwrap(),
+                com_dkh_ev: ComPtr::new(p_event as *mut IUnknown).unwrap(),
+                com_dw_cookie: &mut dw_cookie,
+            })
         } else {
-            println!("키움 크리에이트 실패");
+            println!("키움 싱크 콘트롤 실패 {}, {}", GetLastError(), h_result);
             None
         }
+
     }
     pub fn comm_connect(&self) -> LONG {
         invoke_wrap!( self.comp_kiwoom, 0x1, DISPATCH_METHOD, VT_I4, 0 )
@@ -308,7 +310,7 @@ impl Kiwoom {
                     sTrCode,VT_BSTR,
                     sRecordName,VT_BSTR )
     }
-//
+
 //     fn CommKwRqData( &self,
 //         sArrCode:&mut BSTR,
 //         bNext:&mut LONG,
@@ -735,61 +737,9 @@ impl Kiwoom {
 //                     sTag,VT_BSTR )
 // }
 
+// RIDL!{#[uuid(0xa1574a0d,0x6bfa,0x4bd7,0x90,0x20,0xde,0xd8,0x87,0x11,0x81,0x8d)]class KHOpenAPI;
+// }
 
-//
-// RIDL!{#[uuid(0x7335f12d,0x8973,0x4bd5,0xb7,0xf0,0x12,0xdf,0x3,0xd1,0x75,0xb7)]
-// interface _DKHOpenAPIEvents(_DKHOpenAPIEventsVtbl): IDispatch(IDispatchVtbl){
-//
-//             fn OnReceiveTrData(
-//                             sScrNo:BSTR ,
-//                              sRQName:BSTR ,
-//                              sTrCode:BSTR ,
-//                              sRecordName:BSTR ,
-//                              sPrevNext:BSTR ,
-//                              nDataLength:LONG,
-//                              sErrorCode:BSTR ,
-//                              sMessage:BSTR ,
-//                              sSplmMsg:BSTR,  )->(),
-//
-//             fn OnReceiveRealData(
-//                              sRealKey:BSTR ,
-//                              sRealType:BSTR ,
-//                              sRealData:BSTR,  )->(),
-//
-//             fn OnReceiveMsg(
-//                              sScrNo:BSTR ,
-//                              sRQName:BSTR ,
-//                              sTrCode:BSTR ,
-//                              sMsg:BSTR,  )->(),
-//
-//             fn OnReceiveChejanData(
-//                              sGubun:BSTR ,
-//                              nItemCnt:LONG,
-//                              sFIdList:BSTR,  )->(),
-//
-//             fn OnEventConnect(nErrCode:LONG, )->(),
-//
-//             fn OnReceiveInvestRealData(sRealKey:BSTR,  )->(),
-//
-//             fn OnReceiveRealCondition(
-//                              sTrCode:BSTR ,
-//                              strType:BSTR ,
-//                              strConditionName:BSTR ,
-//                              strConditionIndex:BSTR,  )->(),
-//
-//             fn OnReceiveTrCondition(
-//                              sScrNo:BSTR ,
-//                              strCodeList:BSTR ,
-//                              strConditionName:BSTR ,
-//                              nIndex:INT,
-//                              nNext:INT, )->(),
-//
-//             fn OnReceiveConditionVer(
-//                              lRet:LONG,
-//                              sMsg:BSTR,  )->(),
-//
-//
-// } }
 
 /****
 

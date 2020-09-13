@@ -5,21 +5,12 @@ use winapi::um::unknwnbase::{IUnknown,*};
 use winapi::shared::guiddef::{LPIID, GUID, IID_NULL, REFIID, *};
 use winapi::shared::ntdef::HRESULT;
 use winapi::shared::minwindef::{HMODULE, UINT, WPARAM, LPARAM, LRESULT, LOWORD, *};
-
-
-
-// const WIN_GUID: GUID = guid! {"B196B286-BAB4-101A-B69C-00AA00341D07"};
-//0xB196B286,0xBAB4,,[
-//     0xB6,
-//     0x9C,
-//     0x0,
-//     0xAA,
-//     0x0,
-//     0x34,
-//     0x1D,
-//     0x7,
-// ]
-//    println!("{:#X},{:#X},{:#X},{:#X?}", WIN_GUID.Data1, WIN_GUID.Data2, WIN_GUID.Data3, WIN_GUID.Data4);
+//
+//
+//
+//   AtlAxCreateControlEx 사용시 IConnectionPoint 불필요 삭제해도 상관없으나, 후에 참고를 위하여 남겨둠.
+//
+//
 RIDL!{#[uuid(0xB196B286,0xBAB4, 0x101A,0xB6,0x9C,0x0,0xAA,0x0,0x34,0x1D,0x7)]
 interface IConnectionPoint(IConnectionPointVtbl): IUnknown(IUnknownVtbl){
         fn  GetConnectionInterface(  pIID:*mut IID ,)-> HRESULT,
