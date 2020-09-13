@@ -8,8 +8,6 @@ extern crate wio;
 
 pub mod kiwoom_ctrl;
 pub mod ocidl;
-pub mod dk_event;
-mod event;
 mod event_handle;
 
 // #[macro_use]
