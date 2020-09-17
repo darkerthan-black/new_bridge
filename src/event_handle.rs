@@ -230,7 +230,7 @@ impl EventHandle {
 
 
         let name = SHARED_KIWOOM.as_ref().unwrap().GetLoginInfo("USER_NAME");
-        println!(" 이름 {:?}", name);
+        println!(" 이름 {}", name);
 
 
     }

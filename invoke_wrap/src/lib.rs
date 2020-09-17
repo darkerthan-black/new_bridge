@@ -130,41 +130,40 @@ pub fn invoke_wrap(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
     let mut t_ident =  format!("");
 
-    let r_token = {
-        let var_count = var_num.base10_parse().unwrap();
+    let var_count = var_num.base10_parse().unwrap();
         // let concatenated = format_ident!("{} ")
 
 
-        // DISPPARAM 변수 할당은 역순으로
-        for (i , r) in (0..var_count).rev().enumerate() {
-            // t_ident = match arg_t[i].to_string().as_str() {
-            //
-            //     "VT_BSTR" => format!( "{}  let mut vt_val = var_arg[{}].n1.n2_mut().n3.bstrVal_mut(); vt_val={} ;",t_ident, i, arg_v[i] ),
-            //     "VT_BOOL" => format!( "{}  let mut vt_val =  var_arg[{}].n1.n2_mut().n3.boolVal_mut() ;vt_val= {} ;",t_ident, i, arg_v[i] ),
-            //     "VT_I4" => format!( "{}  let mut vt_val = var_arg[{}].n1.n2_mut().n3.lVal_mut(); vt_val= {} ;",t_ident, i, arg_v[i] ),
-            //     "VT_I2" => format!( "{}  let mut vt_val = var_arg[{}].n1.n2_mut().n3.iVal_mut(); vt_val= {};",t_ident, i, arg_v[i] ),
-            //     _ => format!("{} ", t_ident),//void
-            //
-            // }
+    // DISPPARAM 변수 할당은 역순으로
+    for (i , r) in (0..var_count).rev().enumerate() {
+        // t_ident = match arg_t[i].to_string().as_str() {
+        //
+        //     "VT_BSTR" => format!( "{}  let mut vt_val = var_arg[{}].n1.n2_mut().n3.bstrVal_mut(); vt_val={} ;",t_ident, i, arg_v[i] ),
+        //     "VT_BOOL" => format!( "{}  let mut vt_val =  var_arg[{}].n1.n2_mut().n3.boolVal_mut() ;vt_val= {} ;",t_ident, i, arg_v[i] ),
+        //     "VT_I4" => format!( "{}  let mut vt_val = var_arg[{}].n1.n2_mut().n3.lVal_mut(); vt_val= {} ;",t_ident, i, arg_v[i] ),
+        //     "VT_I2" => format!( "{}  let mut vt_val = var_arg[{}].n1.n2_mut().n3.iVal_mut(); vt_val= {};",t_ident, i, arg_v[i] ),
+        //     _ => format!("{} ", t_ident),//void
+        //
+        // }
 
 
 
-            // var_arg[0] = *(varianted.as_ptr());
-            // println!("왜 반복을 안하지");
-            t_ident = match arg_t[r].to_string().as_str() {
+        // var_arg[0] = *(varianted.as_ptr());
+        // println!("왜 반복을 안하지");
+        t_ident = match arg_t[r].to_string().as_str() {
 
-                "VT_BSTR" => format!( "{} let var_val = U16String::from_str({}); let varianted = VariantExt::<*mut u16>::into_variant(var_val).unwrap() ; var_arg[{}] = *(varianted.as_ptr()); ",t_ident, arg_v[r], i ),
-                "VT_BOOL" => format!( "{}  let varianted = VariantExt::<BOOL>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident,  arg_v[r],i ),
-                "VT_I4" => format!( "{}  let varianted = VariantExt::<LONG>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident, arg_v[r],i ),
-                "VT_INT" => format!( "{}  let varianted = VariantExt::<INT>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident, arg_v[r],i ),
-                _ => format!("{} ", t_ident),//VT_VOID
-
-            }
-
+            "VT_BSTR" => format!( "{} let var_val = U16String::from_str({}); let varianted = VariantExt::<*mut u16>::into_variant(var_val).unwrap() ; var_arg[{}] = *(varianted.as_ptr()); ",t_ident, arg_v[r], i ),
+            "VT_BOOL" => format!( "{}  let varianted = VariantExt::<BOOL>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident,  arg_v[r],i ),
+            "VT_I4" => format!( "{}  let varianted = VariantExt::<LONG>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident, arg_v[r],i ),
+            "VT_INT" => format!( "{}  let varianted = VariantExt::<INT>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident, arg_v[r],i ),
+            _ => format!("{} ", t_ident),//VT_VOID
 
         }
 
+
     };
+
+
 
 
 
@@ -231,7 +230,7 @@ pub fn invoke_wrap(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 
     //함수 리턴 타임에 맞게 리턴 값을 받아온다. U16String::from_bstr(val_str).to_string_lossy()
     let ret_token = match return_type.to_string().as_str() {
-        "VT_BSTR" => quote!{ let r_str = *(var_return.n1.n2_mut().n3.bstrVal()); U16String::from_bstr(r_str).to_string_lossy()  },
+        "VT_BSTR" => quote!{ let r_str = *(var_return.n1.n2_mut().n3.bstrVal()); U16String::from_bstr(r_str).to_string_lossy() },
         "VT_INT" => quote!{ *(var_return.n1.n2_mut().n3.intVal())  },
         "VT_I2" => quote!{ *(var_return.n1.n2_mut().n3.iVal())  },
         "VT_I4" => quote!{ *(var_return.n1.n2_mut().n3.lVal()) },

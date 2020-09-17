@@ -222,9 +222,6 @@ impl Kiwoom {
         invoke_wrap!( self.comp_kiwoom, 0x1, DISPATCH_METHOD, VT_I4, 0 )
 
 
-
-
-
     }
 
     fn CommRqData(&self, sRQName: &str,
