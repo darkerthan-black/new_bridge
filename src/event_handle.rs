@@ -126,7 +126,7 @@ impl IDispatch for EventHandle {
 
 
 
-
+        //DISPPARAM은 바리언트 배열을 역순으로 저장한다.
         if riid.eq((&IID_NULL_C as *const GUID).borrow())  {
             DISP_E_UNKNOWNINTERFACE
         } else {

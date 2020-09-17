@@ -156,8 +156,8 @@ pub fn invoke_wrap(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
                 "VT_BSTR" => format!( "{} let var_val = U16String::from_str({}); let varianted = VariantExt::<*mut u16>::into_variant(var_val).unwrap() ; var_arg[{}] = *(varianted.as_ptr()); ",t_ident, arg_v[r], i ),
                 "VT_BOOL" => format!( "{}  let varianted = VariantExt::<BOOL>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident,  arg_v[r],i ),
                 "VT_I4" => format!( "{}  let varianted = VariantExt::<LONG>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident, arg_v[r],i ),
-                "VT_I2" => format!( "{}  let varianted = VariantExt::<INT>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident, arg_v[r],i ),
-                _ => format!("{} ", t_ident),//void
+                "VT_INT" => format!( "{}  let varianted = VariantExt::<INT>::into_variant({}).unwrap() ;var_arg[{}] = *(varianted.as_ptr());",t_ident, arg_v[r],i ),
+                _ => format!("{} ", t_ident),//VT_VOID
 
             }
 
@@ -237,7 +237,7 @@ pub fn invoke_wrap(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
         "VT_I4" => quote!{ *(var_return.n1.n2_mut().n3.lVal()) },
         "VT_BOOL" => quote!{ *(var_return.n1.n2_mut().n3.boolVal())  },
         "VT_VARIANT" => quote!{ *(var_return.n1.n2_mut().n3.pvarVal())  },
-        _ => quote!{hr},
+        _ => quote!{},
     };
 
 

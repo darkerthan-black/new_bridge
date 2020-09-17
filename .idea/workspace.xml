@@ -24,23 +24,11 @@
     <cargoProject FILE="$PROJECT_DIR$/invoke_fn/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdfd89d0-d3cb-43f2-b23d-74f1ba1a0666" name="Default Changelist" comment="초기 구상 KH api 접속, 이벤트 수신 완료">
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KHOpenAPI.tlb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invoke_wrap/Cargo.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invoke_wrap/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invoke_wrap/src/lib.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/invoke_wrap/src/main.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oaidl_test/Cargo.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oaidl_test/Cargo.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oaidl_test/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/new_bridge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/new_bridge.iml" afterDir="false" />
+    <list default="true" id="fdfd89d0-d3cb-43f2-b23d-74f1ba1a0666" name="Default Changelist" comment="초기 구상 KH api 접속, 이벤트 수신 완료, 이벤트 함수 호출부 구현 완료.  invoke_wrap 매크로 수정 완료.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invoke_wrap/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/invoke_wrap/src/lib.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/event_handle.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/event_handle.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kiwoom_ctrl.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/kiwoom_ctrl.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,6 +143,11 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Cargo Command.Run invoke_fn" />
@@ -200,7 +193,7 @@
       <workItem from="1600272176526" duration="2551000" />
       <workItem from="1600295947676" duration="3651000" />
       <workItem from="1600345485324" duration="5003000" />
-      <workItem from="1600354291346" duration="457000" />
+      <workItem from="1600354291346" duration="6175000" />
     </task>
     <task id="LOCAL-00001" summary="초기 구상">
       <created>1599822942663</created>
@@ -230,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599978633728</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="초기 구상 KH api 접속, 이벤트 수신 완료, 이벤트 함수 호출부 구현 완료.  invoke_wrap 매크로 수정 완료.">
+      <created>1600354990936</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600354990944</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +252,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="초기 구상" />
     <MESSAGE value="초기 구상 KH api 접속, 이벤트 수신 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="초기 구상 KH api 접속, 이벤트 수신 완료" />
+    <MESSAGE value="초기 구상 KH api 접속, 이벤트 수신 완료, 이벤트 함수 호출부 구현 완료.  invoke_wrap 매크로 수정 완료." />
+    <option name="LAST_COMMIT_MESSAGE" value="초기 구상 KH api 접속, 이벤트 수신 완료, 이벤트 함수 호출부 구현 완료.  invoke_wrap 매크로 수정 완료." />
   </component>
   <component name="WindowStateProjectService">
     <state x="711" y="312" key="#Notifications" timestamp="1600354317661">
@@ -283,22 +284,22 @@
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="762" y="186" key="Github.UntrackedFilesDialog/0.0.1920.979@0.0.1920.979" timestamp="1599822103731" />
-    <state width="1921" height="269" key="GridCell.Tab.0.bottom" timestamp="1600354748432">
+    <state width="1611" height="269" key="GridCell.Tab.0.bottom" timestamp="1600360521718">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1921" height="269" key="GridCell.Tab.0.bottom/0.0.1920.979@0.0.1920.979" timestamp="1600354748432" />
-    <state width="1921" height="269" key="GridCell.Tab.0.center" timestamp="1600354748432">
+    <state width="1611" height="269" key="GridCell.Tab.0.bottom/0.0.1920.979@0.0.1920.979" timestamp="1600360521718" />
+    <state width="1611" height="269" key="GridCell.Tab.0.center" timestamp="1600360521718">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1921" height="269" key="GridCell.Tab.0.center/0.0.1920.979@0.0.1920.979" timestamp="1600354748432" />
-    <state width="1921" height="269" key="GridCell.Tab.0.left" timestamp="1600354748432">
+    <state width="1611" height="269" key="GridCell.Tab.0.center/0.0.1920.979@0.0.1920.979" timestamp="1600360521718" />
+    <state width="1611" height="269" key="GridCell.Tab.0.left" timestamp="1600360521718">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1921" height="269" key="GridCell.Tab.0.left/0.0.1920.979@0.0.1920.979" timestamp="1600354748432" />
-    <state width="1921" height="269" key="GridCell.Tab.0.right" timestamp="1600354748432">
+    <state width="1611" height="269" key="GridCell.Tab.0.left/0.0.1920.979@0.0.1920.979" timestamp="1600360521718" />
+    <state width="1611" height="269" key="GridCell.Tab.0.right" timestamp="1600360521718">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1921" height="269" key="GridCell.Tab.0.right/0.0.1920.979@0.0.1920.979" timestamp="1600354748432" />
+    <state width="1611" height="269" key="GridCell.Tab.0.right/0.0.1920.979@0.0.1920.979" timestamp="1600360521718" />
     <state width="1877" height="323" key="GridCell.Tab.1.bottom" timestamp="1600348344246">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
@@ -323,10 +324,10 @@
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="461" y="133" key="SettingsEditor/0.0.1920.979@0.0.1920.979" timestamp="1600102242203" />
-    <state x="552" y="222" key="Vcs.Push.Dialog.v2" timestamp="1599985163278">
+    <state x="552" y="222" key="Vcs.Push.Dialog.v2" timestamp="1600355169529">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state x="552" y="222" key="Vcs.Push.Dialog.v2/0.0.1920.979@0.0.1920.979" timestamp="1599985163278" />
+    <state x="552" y="222" key="Vcs.Push.Dialog.v2/0.0.1920.979@0.0.1920.979" timestamp="1600355169529" />
     <state x="92" y="92" width="1736" height="795" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599677747129">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
@@ -335,10 +336,14 @@
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="92" y="92" width="1736" height="795" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.0.1920.979@0.0.1920.979" timestamp="1599677747129" />
-    <state x="560" y="99" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1599924538620">
+    <state x="560" y="99" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600359717952">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state x="560" y="99" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.979@0.0.1920.979" timestamp="1599924538620" />
+    <state x="560" y="99" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.979@0.0.1920.979" timestamp="1600359717952" />
+    <state x="543" y="44" width="584" height="891" key="find.popup" timestamp="1600358789290">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="543" y="44" width="584" height="891" key="find.popup/0.0.1920.979@0.0.1920.979" timestamp="1600358789290" />
     <state x="729" y="378" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1599822689783">
       <screen x="0" y="0" width="1920" height="979" />
     </state>

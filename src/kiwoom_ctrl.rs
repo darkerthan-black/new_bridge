@@ -244,494 +244,489 @@ impl Kiwoom {
                     sTag,VT_BSTR )
 
 
-
-
-
-
-        // unsafe
-        //     {
-        //         let mut dp = DISPPARAMS
-        //         {
-        //             rgvarg : null_mut(), rgdispidNamedArgs : null_mut(), cArgs : 0,
-        //             cNamedArgs : 0,
-        //         } ;
-        //
-        //         let p_dp : * mut DISPPARAMS = & mut dp ;
-        //         let mut exception_info : *mut EXCEPINFO = null_mut() ;
-        //         let mut var_arg = vec ![VARIANT :: default() ; 1] ;
-        //          // let mut pvar_arg : * mut Vec < VARIANT > = &mut var_arg;  //바리어트 배열
-        //
-        //
-        //
-        //         let var_val =  U16String::from_str(sTag);
-        //         let varianted = VariantExt::into_variant(var_val).unwrap();
-        //
-        //         var_arg[0] = *(varianted.as_ptr());
-        //
-        //         let mut bvar = Box::new(var_arg);
-        //
-        //
-        //
-        //
-        //         dp .cArgs = 1 ;
-        //         // dp . rgvarg = pvar_arg as * mut VARIANT ;
-        //        dp.rgvarg =bvar.as_mut_ptr();
-        //
-        //         if(DISPATCH_METHOD != DISPATCH_METHOD)
-        //         {
-        //             panic !
-        //             ("현재 DISPATCH_METHOD 관련만 구현된 상태입니다.") ;
-        //         }
-        //
-        //         let mut var_return = VARIANT :: default() ;
-        //         let p_varet : * mut VARIANT = & mut var_return ;
-        //
-        //
-        //         let hr = self . comp_kiwoom .
-        //         Invoke(0x4, & IID_NULL, LOCALE_USER_DEFAULT, DISPATCH_METHOD, p_dp,
-        //                p_varet, exception_info, null_mut()) ;
-        //
-        //
-        //         drop(exception_info);
-        //         drop(p_dp);
-        //         drop(bvar);
-        //         *(var_return . n1 . n2_mut() . n3 . bstrVal())
-        //
-        //     }
-
-
     }
 
-    // fn SendOrder(&self,
-    //              sRQName: &str,
-    //              sScreenNo: &str,
-    //              sAccNo: &str,
-    //              nOrderType: LONG,
-    //              sCode: &str,
-    //              nQty: LONG,
-    //              nPrice: LONG,
-    //              sHogaGb: &str,
-    //              sOrgOrderNo: &str) -> LONG {
-    //     invoke_wrap!(self.comp_kiwoom, 0x5, DISPATCH_METHOD, VT_I4, 9,
-    //                         sRQName,VT_BSTR,
-    //                         sScreenNo,VT_BSTR,
-    //                         sAccNo,VT_BSTR,
-    //                         nOrderType,VT_I4,
-    //                         sCode,VT_BSTR,
-    //                         nQty,VT_I4,
-    //                         nPrice,VT_I4,
-    //                         sHogaGb,VT_BSTR,
-    //                         sOrgOrderNo,VT_BSTR )
-    // }
-    //
-    // fn SendOrderFO(&self,
-    //                sRQName: &str,
-    //                sScreenNo: &str,
-    //                sAccNo: &str,
-    //                sCode: &str,
-    //                lOrdKind: LONG,
-    //                sSlbyTp: &str,
-    //                sOrdTp: &str,
-    //                lQty: LONG,
-    //                sPrice: &str,
-    //                sOrgOrdNo: &str) -> LONG {
-    //     invoke_wrap!(self.comp_kiwoom, 0x6, DISPATCH_METHOD, VT_I4, 10,
-    //                 sRQName,VT_BSTR,
-    //                 sScreenNo,VT_BSTR,
-    //                 sAccNo,VT_BSTR,
-    //                 sCode,VT_BSTR,
-    //                 lOrdKind,VT_I4,
-    //                 sSlbyTp,VT_BSTR,
-    //                 sOrdTp,VT_BSTR,
-    //                 lQty,VT_I4,
-    //                 sPrice,VT_BSTR,
-    //                 sOrgOrdNo,VT_BSTR )
-    // }
-    //
-    // fn SetInputValue(&self,
-    //                  sID: &str,
-    //                  sValue: &str) {
-    //     invoke_wrap!(self.comp_kiwoom, 0x7, DISPATCH_METHOD, VOID, 2,
-    //                         sID,VT_BSTR,
-    //                         sValue,VT_BSTR );
-    // }
-    //
-    // fn SetOutputFID(&self, sID: &str) -> LONG {
-    //     invoke_wrap!(self.comp_kiwoom, 0x8, DISPATCH_METHOD, VT_I4, 1,
-    //                 sID,VT_BSTR )
-    // }
-    //
-    // fn CommGetData(&self,
-    //                sJongmokCode: &str,
-    //                sRealType: &str,
-    //                sFieldName: &str,
-    //                nIndex: LONG,
-    //                sInnerFieldName: &str) -> BSTR {
-    //     invoke_wrap!(self.comp_kiwoom, 0x9, DISPATCH_METHOD, VT_BSTR, 5,
-    //                 sJongmokCode,VT_BSTR,
-    //                 sRealType,VT_BSTR,
-    //                 sFieldName,VT_BSTR,
-    //                 nIndex, VT_I4,
-    //                 sInnerFieldName,VT_BSTR)
-    // }
-    //
-    // fn DisconnectRealData(&self, sScnNo: &str) {
-    //     invoke_wrap!(self.comp_kiwoom, 0xa, DISPATCH_METHOD, VOID, 1,
-    //                 sScnNo,VT_BSTR );
-    // }
-    //
-    // fn GetRepeatCnt(&self,
-    //                 sTrCode: &str,
-    //                 sRecordName: &str) -> LONG {
-    //     invoke_wrap!(self.comp_kiwoom, 0xb, DISPATCH_METHOD, VT_I4, 2,
-    //                 sTrCode,VT_BSTR,
-    //                 sRecordName,VT_BSTR )
-    // }
+    fn SendOrder(&self,
+                 sRQName: &str,
+                 sScreenNo: &str,
+                 sAccNo: &str,
+                 nOrderType: LONG,
+                 sCode: &str,
+                 nQty: LONG,
+                 nPrice: LONG,
+                 sHogaGb: &str,
+                 sOrgOrderNo: &str) -> LONG {
+        invoke_wrap!(self.comp_kiwoom, 0x5, DISPATCH_METHOD, VT_I4, 9,
+                            sRQName,VT_BSTR,
+                            sScreenNo,VT_BSTR,
+                            sAccNo,VT_BSTR,
+                            nOrderType,VT_I4,
+                            sCode,VT_BSTR,
+                            nQty,VT_I4,
+                            nPrice,VT_I4,
+                            sHogaGb,VT_BSTR,
+                            sOrgOrderNo,VT_BSTR )
+    }
 
-//     fn CommKwRqData( &self,
-//         sArrCode:&str,
-//         bNext:LONG,
-//         nCodeCount:INT,
-//         nTypeFlag:INT,
-//         sRQName:&str,
-//         sScreenNo:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0xc, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetAPIModulePath( &self)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0xd, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetCodeListByMarket( &self, sMarket:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0xe, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetConnectState( &self)->LONG {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0xf, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetMasterCodeName( &self, sTrCode:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x10, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetMasterListedStockCnt( &self,sTrCode:&str)->LONG {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x11, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetMasterConstruction( &self, sTrCode:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x12, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetMasterListedStockDate( &self, sTrCode:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x13, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetMasterLastPrice( &self, sTrCode:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x14, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetMasterStockState( &self, sTrCode:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x15, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetDataCount( &self, strRecordName:&str)->LONG {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x16, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetOutputValue( &self,
-//         strRecordName:&str,
-//         nRepeatIdx:LONG,
-//         nItemIdx:LONG)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x17, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetCommData( &self,
-//         strTrCode:&str,
-//         strRecordName:&str,
-//         nIndex:LONG,
-//         strItemName:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x18, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetCommRealData( &self,
-//         sTrCode:&str,
-//         nFid:LONG)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x19, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetChejanData( &self,nFid:LONG)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x1a, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetThemeGroupList( &self,nType:LONG)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x1b, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetThemeGroupCode( &self, strThemeCode:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x1c, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetFutureList( &self)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x1d, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetFutureCodeByIndex( &self,nIndex:INT)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x1e, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetActPriceList( &self)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x1f, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetMonthList( &self)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x20, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetOptionCode( &self,
-//         strActPrice:&str,
-//         nCp:INT,
-//         strMonth:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x21, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetOptionCodeByMonth( &self,
-//         sTrCode:&str,
-//         nCp:INT,
-//         strMonth:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x22, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetOptionCodeByActPrice( &self,
-//         sTrCode:&str,
-//         nCp:INT,
-//         nTick:INT)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x23, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSFutureList( &self, strBaseAssetCode:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x24, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSFutureCodeByIndex( &self,
-//         strBaseAssetCode:&str,
-//         nIndex:INT)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x25, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSActPriceList( &self, strBaseAssetGb:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x26, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSMonthList( &self, strBaseAssetGb:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x27, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSOptionCode( &self,
-//         strBaseAssetGb:&str,
-//         strActPrice:&str,
-//         nCp:INT,
-//         strMonth:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x28, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSOptionCodeByMonth( &self,
-//         strBaseAssetGb:&str,
-//         sTrCode:&str,
-//         nCp:INT,
-//         strMonth:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x29, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSOptionCodeByActPrice( &self,
-//         strBaseAssetGb:&str,
-//         sTrCode:&str,
-//         nCp:INT,
-//         nTick:INT)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x2a, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSFOBasisAssetList( &self)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x2b, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetOptionATM( &self)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x2c, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetSOptionATM( &self, strBaseAssetGb:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x2d, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetBranchCodeName( &self)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x2e, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn CommInvestRqData( &self,
-//         sMarketGb:&str,
-//         sRQName:&str,
-//         sScreenNo:&str)->LONG {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x2f, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn SendOrderCredit( &self,
-//         sRQName:&str,
-//         sScreenNo:&str,
-//         sAccNo:&str,
-//         nOrderType:LONG,
-//         sCode:&str,
-//         nQty:LONG,
-//         nPrice:LONG,
-//         sHogaGb:&str,
-//         sCreditGb:&str,
-//         sLoanDate:&str,
-//         sOrgOrderNo:&str)->LONG {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x30, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn KOA_Functions( &self,
-//         sFunctionName:&str,
-//         sParam:&str)-> BSTR {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x31, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn SetInfoData( &self,sInfoData:&str)->LONG {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x32, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn SetRealReg( &self,
-//         strScreenNo:&str,
-//         strCodeList:&str,
-//         strFidList:&str,
-//         strOptType:&str)->LONG {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x33, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetConditionLoad( &self)->LONG {
-//
-//         invoke_wrap!(self.comp_kiwoom, 0x34, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn GetConditionNameList( &self)-> BSTR {
-//         invoke_wrap!(self.comp_kiwoom, 0x35, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn SendCondition( &self,
-//         strScrNo:&str,
-//         strConditionName:&str,
-//         nIndex:INT,
-//         nSearch:INT)->LONG {
-//         invoke_wrap!(self.comp_kiwoom, 0x36, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-//     }
-//
-//     fn SendConditionStop( &self,
-//         strScrNo:&str,
-//         strConditionName:&str,
-//         nIndex:INT){
-//         invoke_wrap!(self.comp_kiwoom, 0x37, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-// }
-//
-//     fn GetCommDataEx( &self,
-//         strTrCode:&str,
-//         strRecordName:&str)->VARIANT {
-//         invoke_wrap!(self.comp_kiwoom, 0x38, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-// }
-//
-//     fn SetRealRemove( &self,
-//         strScrNo:&str,
-//         strDelCode:&str){
-//         invoke_wrap!(self.comp_kiwoom, 0x39, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-// }
-//
-//     fn GetMarketType( &self,sTrCode:&mut BSTR)->LONG {
-//         invoke_wrap!(self.comp_kiwoom, 0x3a, DISPATCH_METHOD, VT_BSTR, 1,
-//                     sTag,VT_BSTR )
-// }
+    fn SendOrderFO(&self,
+                   sRQName: &str,
+                   sScreenNo: &str,
+                   sAccNo: &str,
+                   sCode: &str,
+                   lOrdKind: LONG,
+                   sSlbyTp: &str,
+                   sOrdTp: &str,
+                   lQty: LONG,
+                   sPrice: &str,
+                   sOrgOrdNo: &str) -> LONG {
+        invoke_wrap!(self.comp_kiwoom, 0x6, DISPATCH_METHOD, VT_I4, 10,
+                    sRQName,VT_BSTR,
+                    sScreenNo,VT_BSTR,
+                    sAccNo,VT_BSTR,
+                    sCode,VT_BSTR,
+                    lOrdKind,VT_I4,
+                    sSlbyTp,VT_BSTR,
+                    sOrdTp,VT_BSTR,
+                    lQty,VT_I4,
+                    sPrice,VT_BSTR,
+                    sOrgOrdNo,VT_BSTR )
+    }
+
+    fn SetInputValue(&self,
+                     sID: &str,
+                     sValue: &str) {
+        invoke_wrap!(self.comp_kiwoom, 0x7, DISPATCH_METHOD, VT_VOID, 2,
+                            sID,VT_BSTR,
+                            sValue,VT_BSTR );
+    }
+
+    fn SetOutputFID(&self, sID: &str) -> LONG {
+        invoke_wrap!(self.comp_kiwoom, 0x8, DISPATCH_METHOD, VT_I4, 1,
+                    sID,VT_BSTR )
+    }
+
+    fn CommGetData(&self,
+                   sJongmokCode: &str,
+                   sRealType: &str,
+                   sFieldName: &str,
+                   nIndex: LONG,
+                   sInnerFieldName: &str) -> String {
+        invoke_wrap!(self.comp_kiwoom, 0x9, DISPATCH_METHOD, VT_BSTR, 5,
+                    sJongmokCode,VT_BSTR,
+                    sRealType,VT_BSTR,
+                    sFieldName,VT_BSTR,
+                    nIndex, VT_I4,
+                    sInnerFieldName,VT_BSTR)
+    }
+
+    fn DisconnectRealData(&self, sScnNo: &str) {
+        invoke_wrap!(self.comp_kiwoom, 0xa, DISPATCH_METHOD, VT_VOID, 1,
+                    sScnNo,VT_BSTR );
+    }
+
+    fn GetRepeatCnt(&self,
+                    sTrCode: &str,
+                    sRecordName: &str) -> LONG {
+        invoke_wrap!(self.comp_kiwoom, 0xb, DISPATCH_METHOD, VT_I4, 2,
+                    sTrCode,VT_BSTR,
+                    sRecordName,VT_BSTR )
+    }
+
+    //반드시 테스트 해봐야 하는 함수  INT를 c++ 예제에서는 long 으로 처리
+    fn CommKwRqData( &self,
+        sArrCode:&str,
+        bNext:LONG,
+        nCodeCount:INT,
+        nTypeFlag:INT,
+        sRQName:&str,
+        sScreenNo:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0xc, DISPATCH_METHOD, VT_BSTR, 6,
+                    sArrCode,VT_BSTR,
+        bNext,VT_I4,
+        nCodeCount,VT_INT,
+        nTypeFlag,VT_INT,
+        sRQName,VT_BSTR,
+        sScreenNo,VT_BSTR )
+    }
+
+    fn GetAPIModulePath( &self)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0xd, DISPATCH_METHOD, VT_BSTR, 0
+                   )
+    }
+
+    fn GetCodeListByMarket( &self, sMarket:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0xe, DISPATCH_METHOD, VT_BSTR, 1,
+                    sMarket,VT_BSTR )
+    }
+
+    fn GetConnectState( &self)->LONG {
+
+        invoke_wrap!(self.comp_kiwoom, 0xf, DISPATCH_METHOD, VT_I4, 0
+                    )
+    }
+
+    fn GetMasterCodeName( &self, sTrCode:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x10, DISPATCH_METHOD, VT_BSTR, 1,
+                    sTrCode,VT_BSTR )
+    }
+
+    fn GetMasterListedStockCnt( &self,sTrCode:&str)->LONG {
+
+        invoke_wrap!(self.comp_kiwoom, 0x11, DISPATCH_METHOD, VT_I4, 1,
+                    sTrCode,VT_BSTR )
+    }
+
+    fn GetMasterConstruction( &self, sTrCode:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x12, DISPATCH_METHOD, VT_BSTR, 1,
+                    sTrCode,VT_BSTR )
+    }
+
+    fn GetMasterListedStockDate( &self, sTrCode:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x13, DISPATCH_METHOD, VT_BSTR, 1,
+                    sTrCode,VT_BSTR )
+    }
+
+    fn GetMasterLastPrice( &self, sTrCode:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x14, DISPATCH_METHOD, VT_BSTR, 1,
+                    sTrCode,VT_BSTR )
+    }
+
+    fn GetMasterStockState( &self, sTrCode:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x15, DISPATCH_METHOD, VT_BSTR, 1,
+                    sTrCode,VT_BSTR )
+    }
+
+    fn GetDataCount( &self, strRecordName:&str)->LONG {
+
+        invoke_wrap!(self.comp_kiwoom, 0x16, DISPATCH_METHOD, VT_I4, 1,
+                    strRecordName,VT_BSTR )
+    }
+
+    fn GetOutputValue( &self,
+        strRecordName:&str,
+        nRepeatIdx:LONG,
+        nItemIdx:LONG)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x17, DISPATCH_METHOD, VT_BSTR, 3,
+                            strRecordName, VT_BSTR,
+        nRepeatIdx,VT_I4,
+        nItemIdx,VT_I4 )
+    }
+
+    fn GetCommData( &self,
+        strTrCode:&str,
+        strRecordName:&str,
+        nIndex:LONG,
+        strItemName:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x18, DISPATCH_METHOD, VT_BSTR, 4,
+                            strTrCode,VT_BSTR,
+        strRecordName,VT_BSTR,
+        nIndex,VT_I4,
+        strItemName,VT_BSTR)
+    }
+
+    fn GetCommRealData( &self,
+        sTrCode:&str,
+        nFid:LONG)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x19, DISPATCH_METHOD, VT_BSTR, 2,
+                           sTrCode,VT_BSTR,
+        nFid,VT_I4 )
+    }
+
+    fn GetChejanData( &self,nFid:LONG)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x1a, DISPATCH_METHOD, VT_BSTR, 1,
+                    nFid,VT_I4 )
+    }
+
+    fn GetThemeGroupList( &self,nType:LONG)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x1b, DISPATCH_METHOD, VT_BSTR, 1,
+                    nType,VT_I4 )
+    }
+
+    fn GetThemeGroupCode( &self, strThemeCode:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x1c, DISPATCH_METHOD, VT_BSTR, 1,
+                    strThemeCode,VT_BSTR )
+    }
+
+    fn GetFutureList( &self)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x1d, DISPATCH_METHOD, VT_BSTR, 0
+                    )
+    }
+
+    fn GetFutureCodeByIndex( &self,nIndex:INT)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x1e, DISPATCH_METHOD, VT_BSTR, 1,
+                    nIndex,VT_INT )
+    }
+
+    fn GetActPriceList( &self)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x1f, DISPATCH_METHOD, VT_BSTR, 0
+                    )
+    }
+
+    fn GetMonthList( &self)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x20, DISPATCH_METHOD, VT_BSTR, 0
+                     )
+    }
+
+    fn GetOptionCode( &self,
+        strActPrice:&str,
+        nCp:INT,
+        strMonth:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x21, DISPATCH_METHOD, VT_BSTR, 3,
+                    strActPrice,VT_BSTR,
+        nCp,VT_INT,
+        strMonth,VT_BSTR )
+    }
+
+    fn GetOptionCodeByMonth( &self,
+        sTrCode:&str,
+        nCp:INT,
+        strMonth:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x22, DISPATCH_METHOD, VT_BSTR, 3,
+                    sTrCode,VT_BSTR,
+        nCp,VT_INT,
+        strMonth,VT_BSTR )
+    }
+
+    fn GetOptionCodeByActPrice( &self,
+        sTrCode:&str,
+        nCp:INT,
+        nTick:INT)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x23, DISPATCH_METHOD, VT_BSTR, 3,
+                    sTrCode,VT_BSTR,
+        nCp,VT_INT,
+        nTick,VT_INT )
+    }
+
+    fn GetSFutureList( &self, strBaseAssetCode:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x24, DISPATCH_METHOD, VT_BSTR, 1,
+                    strBaseAssetCode,VT_BSTR )
+    }
+
+    fn GetSFutureCodeByIndex( &self,
+        strBaseAssetCode:&str,
+        nIndex:INT)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x25, DISPATCH_METHOD, VT_BSTR, 2,
+                     strBaseAssetCode,VT_BSTR,
+        nIndex,VT_INT )
+    }
+
+    fn GetSActPriceList( &self, strBaseAssetGb:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x26, DISPATCH_METHOD, VT_BSTR, 1,
+                    strBaseAssetGb,VT_BSTR )
+    }
+
+    fn GetSMonthList( &self, strBaseAssetGb:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x27, DISPATCH_METHOD, VT_BSTR, 1,
+                    strBaseAssetGb,VT_BSTR )
+    }
+
+    fn GetSOptionCode( &self,
+        strBaseAssetGb:&str,
+        strActPrice:&str,
+        nCp:INT,
+        strMonth:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x28, DISPATCH_METHOD, VT_BSTR, 4,
+                            strBaseAssetGb,VT_BSTR,
+        strActPrice,VT_BSTR,
+        nCp,VT_INT,
+        strMonth,VT_BSTR )
+    }
+
+    fn GetSOptionCodeByMonth( &self,
+        strBaseAssetGb:&str,
+        sTrCode:&str,
+        nCp:INT,
+        strMonth:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x29, DISPATCH_METHOD, VT_BSTR, 4,
+                    strBaseAssetGb,VT_BSTR,
+        sTrCode,VT_BSTR,
+        nCp,VT_INT,
+        strMonth,VT_BSTR)
+    }
+
+    fn GetSOptionCodeByActPrice( &self,
+        strBaseAssetGb:&str,
+        sTrCode:&str,
+        nCp:INT,
+        nTick:INT)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x2a, DISPATCH_METHOD, VT_BSTR, 4,
+                     strBaseAssetGb,VT_BSTR,
+        sTrCode,VT_BSTR,
+        nCp,VT_INT,
+        nTick,VT_INT)
+    }
+
+    fn GetSFOBasisAssetList( &self)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x2b, DISPATCH_METHOD, VT_BSTR, 0
+                    )
+    }
+
+    fn GetOptionATM( &self)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x2c, DISPATCH_METHOD, VT_BSTR, 0
+                     )
+    }
+
+    fn GetSOptionATM( &self, strBaseAssetGb:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x2d, DISPATCH_METHOD, VT_BSTR, 1,
+                    strBaseAssetGb,VT_BSTR )
+    }
+
+    fn GetBranchCodeName( &self)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x2e, DISPATCH_METHOD, VT_BSTR, 0
+                     )
+    }
+
+    fn CommInvestRqData( &self,
+        sMarketGb:&str,
+        sRQName:&str,
+        sScreenNo:&str)->LONG {
+
+        invoke_wrap!(self.comp_kiwoom, 0x2f, DISPATCH_METHOD, VT_I4, 3,
+                    sMarketGb,VT_BSTR,
+        sRQName,VT_BSTR,
+        sScreenNo,VT_BSTR )
+    }
+
+    fn SendOrderCredit( &self,
+        sRQName:&str,
+        sScreenNo:&str,
+        sAccNo:&str,
+        nOrderType:LONG,
+        sCode:&str,
+        nQty:LONG,
+        nPrice:LONG,
+        sHogaGb:&str,
+        sCreditGb:&str,
+        sLoanDate:&str,
+        sOrgOrderNo:&str)->LONG {
+
+        invoke_wrap!(self.comp_kiwoom, 0x30, DISPATCH_METHOD, VT_I4, 11,
+                    sRQName,VT_BSTR,
+        sScreenNo,VT_BSTR,
+        sAccNo,VT_BSTR,
+        nOrderType,VT_I4,
+        sCode,VT_BSTR,
+        nQty,VT_I4,
+        nPrice,VT_I4,
+        sHogaGb,VT_BSTR,
+        sCreditGb,VT_BSTR,
+        sLoanDate,VT_BSTR,
+        sOrgOrderNo,VT_BSTR)
+    }
+
+    fn KOA_Functions( &self,
+        sFunctionName:&str,
+        sParam:&str)-> String {
+
+        invoke_wrap!(self.comp_kiwoom, 0x31, DISPATCH_METHOD, VT_BSTR, 2,
+                    sFunctionName,VT_BSTR,
+        sParam,VT_BSTR )
+    }
+
+    fn SetInfoData( &self,sInfoData:&str)->LONG {
+
+        invoke_wrap!(self.comp_kiwoom, 0x32, DISPATCH_METHOD, VT_I4, 1,
+                    sInfoData,VT_BSTR )
+    }
+
+    fn SetRealReg( &self,
+        strScreenNo:&str,
+        strCodeList:&str,
+        strFidList:&str,
+        strOptType:&str)->LONG {
+
+        invoke_wrap!(self.comp_kiwoom, 0x33, DISPATCH_METHOD, VT_I4, 4,
+                    strScreenNo,VT_BSTR,
+        strCodeList,VT_BSTR,
+        strFidList,VT_BSTR,
+        strOptType,VT_BSTR)
+    }
+
+    fn GetConditionLoad( &self)->LONG {
+
+        invoke_wrap!(self.comp_kiwoom, 0x34, DISPATCH_METHOD, VT_I4, 0
+                    )
+    }
+
+    fn GetConditionNameList( &self)-> String {
+        invoke_wrap!(self.comp_kiwoom, 0x35, DISPATCH_METHOD, VT_BSTR, 0
+                     )
+    }
+
+    fn SendCondition( &self,
+        strScrNo:&str,
+        strConditionName:&str,
+        nIndex:INT,
+        nSearch:INT)->LONG {
+        invoke_wrap!(self.comp_kiwoom, 0x36, DISPATCH_METHOD, VT_I4, 4,
+                    strScrNo,VT_BSTR,
+        strConditionName,VT_BSTR,
+        nIndex,VT_INT,
+        nSearch,VT_INT )
+    }
+
+    fn SendConditionStop( &self,
+        strScrNo:&str,
+        strConditionName:&str,
+        nIndex:INT){
+        invoke_wrap!(self.comp_kiwoom, 0x37, DISPATCH_METHOD, VT_VOID, 3,
+                    strScrNo,VT_BSTR,
+        strConditionName,VT_BSTR,
+        nIndex,VT_INT )
+}
+
+    fn GetCommDataEx( &self,
+        strTrCode:&str,
+        strRecordName:&str)->*mut VARIANT {
+        invoke_wrap!(self.comp_kiwoom, 0x38, DISPATCH_METHOD, VT_VARIANT, 2,
+                    strTrCode,VT_BSTR,
+        strRecordName,VT_BSTR )
+}
+
+    fn SetRealRemove( &self,
+        strScrNo:&str,
+        strDelCode:&str){
+        invoke_wrap!(self.comp_kiwoom, 0x39, DISPATCH_METHOD, VT_VOID, 2,
+                    strScrNo,VT_BSTR,
+        strDelCode,VT_BSTR)
+}
+
+    fn GetMarketType( &self,sTrCode:&str)->LONG {
+        invoke_wrap!(self.comp_kiwoom, 0x3a, DISPATCH_METHOD, VT_I4, 1,
+                    sTrCode,VT_BSTR )
+}
 }
 
 
