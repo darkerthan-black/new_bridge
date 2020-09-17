@@ -721,6 +721,7 @@ impl Kiwoom {
         invoke_wrap!(self.comp_kiwoom, 0x39, DISPATCH_METHOD, VT_VOID, 2,
                     strScrNo,VT_BSTR,
         strDelCode,VT_BSTR)
+
 }
 
     fn GetMarketType( &self,sTrCode:&str)->LONG {
