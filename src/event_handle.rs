@@ -18,31 +18,38 @@ use dlopen::wrapper::{Container, WrapperApi};
 use winapi::shared::guiddef;
 use winapi::shared::winerror::DISP_E_UNKNOWNINTERFACE;
 use winapi::_core::borrow::Borrow;
+use crate::kiwoom_ctrl::SHARED_KIWOOM;
+use oaidl::{Variant, BStringExt};
+use std::vec::IntoIter;
+use oaidl::{SafeArrayElement, SafeArrayExt, SafeArrayError};
+use winapi::shared::wtypes::*;
+use widestring::{UCString, U16String};
+// use crate::rust_to_win_str;
 
-const IID_NULL_C :GUID = IID_NULL;
+const IID_NULL_C :GUID = IID_NULL ;
 
 
-#[derive(WrapperApi)]
-struct LoadType {
-    LoadRegTypeLib: unsafe extern "stdcall" fn(  rguid:REFGUID,
-         wVerMajor:WORD,
-         wVerMinor:WORD,
-         lcid:LCID,
-     pptlib:*mut *mut ITypeLib) -> HRESULT,
-
-    DispGetIDsOfNames:  unsafe extern "stdcall" fn(
-     ptinfo:*mut ITypeInfo,
-      rgszNames:*mut LPOLESTR,
-          cNames:UINT,
-        rgdispid:*mut DISPID
-    )->HRESULT,
-
-}
+// #[derive(WrapperApi)]
+// struct LoadType {
+//     LoadRegTypeLib: unsafe extern "stdcall" fn(  rguid:REFGUID,
+//          wVerMajor:WORD,
+//          wVerMinor:WORD,
+//          lcid:LCID,
+//      pptlib:*mut *mut ITypeLib) -> HRESULT,
+//
+//     DispGetIDsOfNames:  unsafe extern "stdcall" fn(
+//      ptinfo:*mut ITypeInfo,
+//       rgszNames:*mut LPOLESTR,
+//           cNames:UINT,
+//         rgdispid:*mut DISPID
+//     )->HRESULT,
+//
+// }
 
 
 #[co_class(implements(IDispatch))]
 pub struct EventHandle {
-    num_owners: u32,
+    // num_owners: u32,
     // pTypeLib:*mut ITypeLib,
 
 }
@@ -107,24 +114,80 @@ impl IDispatch for EventHandle {
 
     unsafe fn invoke(&self, dispIdMember: i32, riid:REFIID, lcid: u32, wFlags: u16, pDispParams: *mut DISPPARAMS, pVarResult: *mut VARIANT, pExcepInfo: *mut EXCEPINFO, puArgErr: *mut u32) -> i32 {
 
+
+        let var_num = (*pDispParams).cArgs  as usize;
+
+        let v = std::ptr::slice_from_raw_parts_mut((*pDispParams).rgvarg, var_num);
+
+
+        // let v = Vec::from_raw_parts( disp_params.rgvarg, var_num, var_num);
+        // let v:&[VARIANT] = disp_params.rgvarg;
+
+
+
+
+
         if riid.eq((&IID_NULL_C as *const GUID).borrow())  {
             DISP_E_UNKNOWNINTERFACE
         } else {
             match dispIdMember {
-                // 0x1 => self.OnReceiveTrData()
-                // 0x2 => self.OnReceiveRealData()
-                // 0x3 => self.OnReceiveMsg()
-                // 0x4 => self.OnReceiveChejanData()
-                0x5 => self.OnEventConnect( 0),
-                // 0x6 => self.OnReceiveInvestRealData()
-                // 0x7 => self.OnReceiveRealCondition()
-                // 0x8 => self.OnReceiveTrCondition()
-                // 0x9 => self.OnReceiveConditionVer()
+                0x1 => self.OnReceiveTrData(*((*v)[8]).n1.n2().n3.bstrVal(),
+                                            *((*v)[7]).n1.n2().n3.bstrVal(),
+                                            *((*v)[6]).n1.n2().n3.bstrVal(),
+                                            *((*v)[5]).n1.n2().n3.bstrVal(),
+                                            *((*v)[4]).n1.n2().n3.bstrVal(),
+                                            *((*v)[3]).n1.n2().n3.lVal(),
+                                            *((*v)[2]).n1.n2().n3.bstrVal(),
+                                            *((*v)[1]).n1.n2().n3.bstrVal(),
+                                            *((*v)[0]).n1.n2().n3.bstrVal(),
+
+                ),
+                0x2 => self.OnReceiveRealData(*((*v)[2]).n1.n2().n3.bstrVal(),
+                                              *((*v)[1]).n1.n2().n3.bstrVal(),
+                                              *((*v)[0]).n1.n2().n3.bstrVal(),),
+                0x3 => self.OnReceiveMsg(
+                    *((*v)[3]).n1.n2().n3.bstrVal(),
+                    *((*v)[2]).n1.n2().n3.bstrVal(),
+                    *((*v)[1]).n1.n2().n3.bstrVal(),
+                    *((*v)[0]).n1.n2().n3.bstrVal()
+                ),
+                0x4 => self.OnReceiveChejanData(
+                    *((*v)[3]).n1.n2().n3.bstrVal(),
+                    *((*v)[2]).n1.n2().n3.lVal(),
+                    *((*v)[1]).n1.n2().n3.bstrVal()
+                ),
+                0x5 => self.OnEventConnect(
+                    *((*v)[0]).n1.n2().n3.lVal()
+                    // 0
+                ),
+
+                0x6 => self.OnReceiveInvestRealData(
+                    *((*v)[0]).n1.n2().n3.bstrVal()
+                ),
+                0x7 => self.OnReceiveRealCondition(
+                    *((*v)[3]).n1.n2().n3.bstrVal(),
+                    *((*v)[2]).n1.n2().n3.bstrVal(),
+                    *((*v)[1]).n1.n2().n3.bstrVal(),
+                    *((*v)[0]).n1.n2().n3.bstrVal()
+                ),
+                0x8 => self.OnReceiveTrCondition(
+                        *((*v)[4]).n1.n2().n3.bstrVal(),
+                    *((*v)[3]).n1.n2().n3.bstrVal(),
+                *((*v)[2]).n1.n2().n3.bstrVal(),
+                *((*v)[1]).n1.n2().n3.intVal(),
+                        *((*v)[0]).n1.n2().n3.intVal()
+                ),
+                0x9 => self.OnReceiveConditionVer(
+                    *((*v)[1]).n1.n2().n3.lVal(),
+                    *((*v)[0]).n1.n2().n3.bstrVal()
+                ),
                 _ => {}
             };
+            // std::mem::forget(v);
+
+
             NOERROR
         }
-
 
 
     }
@@ -162,8 +225,12 @@ impl EventHandle {
 
     unsafe fn OnEventConnect(&self,nErrCode:LONG ) {
         println!("**********************************");
-        println!(" 접속 이벤트가 발생했습니다. 축하합니다.");
+        println!(" 접속 이벤트가 발생했습니다. 축하합니다. {}", nErrCode);
         println!("**********************************");
+
+
+        let name = SHARED_KIWOOM.as_ref().unwrap().GetLoginInfo("USER_NAME");
+        println!(" 이름 {:?}", name);
 
 
     }
@@ -188,13 +255,13 @@ impl EventHandle {
                              sMsg:BSTR  ) {}
 
     pub(crate) fn new() -> Box<EventHandle> {
-        let num_owners = 20;
+        // let num_owners = 20;
         // let mut cont: Container<LoadType> =
         //     unsafe { Container::load("oleaut32.dll") }.expect("타입 로딩");
         // cont.LoadRegTypeLib(
         //
         // );
-        println!("생성자 호출");
-        EventHandle::allocate(20)
+
+        EventHandle::allocate()
     }
 }

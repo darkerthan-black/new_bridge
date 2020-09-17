@@ -47,6 +47,7 @@ use winapi::_core::mem;
 use winapi::um::libloaderapi::GetModuleHandleW;
 use winapi::um::winuser::*;
 use winapi::shared::guiddef::REFIID;
+use winapi::_core::borrow::BorrowMut;
 // use guid::GUID;
 
 //
@@ -138,9 +139,6 @@ pub fn create_window(hinstance: HMODULE, name: &str, title: &str) -> Result<Wind
         RegisterClassExW(&wnd_class);
 
 
-        println!("진행");
-        //
-        //
         handle = CreateWindowExW(
             0,
             name.as_ptr(),
@@ -157,15 +155,9 @@ pub fn create_window(hinstance: HMODULE, name: &str, title: &str) -> Result<Wind
             Box::into_raw(in_window) as *mut UserData as *mut c_void,
         );
 
-
-        println!("통과");
         ShowWindow(handle, SW_SHOWNORMAL);
         UpdateWindow(handle);
 
-
-        // create_ocx_container(handle);
-
-        println!("생성");
 
     };
 
@@ -227,10 +219,15 @@ pub fn show_window() {
     let mut window:Window = create_window(unsafe { GetModuleHandleW(null_mut()) }, "Form1", "Form1").unwrap();
     // let kiwoom :Kiwoom = unsafe{  };
 
-    unsafe { SHARED_KIWOOM = Some(Kiwoom::new(window.handle).unwrap()); }
+    unsafe {
 
+        SHARED_KIWOOM = Some(Kiwoom::new(window.handle).unwrap());
 
-    unsafe { SHARED_KIWOOM.as_ref().unwrap().comm_connect(); }
+        SHARED_KIWOOM.as_ref().unwrap().comm_connect();
+//
+// let name =         SHARED_KIWOOM.as_ref().unwrap().GetLoginInfo(rust_to_win_str("USER_NAME").as_mut_ptr().borrow_mut());
+//     println!("{}", wio::bstr::BStr::from_raw(name).to_string_lossy());
+    }
 
     // unsafe { SHARED_KIWOOM.as_ref().unwrap(). }
 

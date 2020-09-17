@@ -19,191 +19,28 @@
   </component>
   <component name="CargoProjects">
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/oaidl_test/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/invoke_wrap/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/invoke_fn/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdfd89d0-d3cb-43f2-b23d-74f1ba1a0666" name="Default Changelist" comment="초기 구상">
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="fdfd89d0-d3cb-43f2-b23d-74f1ba1a0666" name="Default Changelist" comment="초기 구상 KH api 접속, 이벤트 수신 완료">
       <change afterPath="$PROJECT_DIR$/../TEventHandler/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.idl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.rc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.rgs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject.tlb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObjectCP.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject_Impl.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject_Impl.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject_i.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObject_p.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObjectps.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/EventFiringObjectps.mk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/StdAfx.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/StdAfx.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/dlldata.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/EventFiringObject/resource.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/EventFiringObject.tlh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/EventFiringObject.tli" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/ReadMe.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/StdAfx.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/StdAfx.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TEventHandler.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TestClient.clw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TestClient.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TestClient.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TestClient.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TestClient.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TestClient.rc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TestClientDlg.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/TestClientDlg.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/res/TestClient.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/res/TestClient.rc2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../TEventHandler/TestClient/resource.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/ComInC1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/ComInC2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/ComInC3.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/ComInC4.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/ComInC5.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample/IExample.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample/IExample.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample/IExample.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample/IExample.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample/IExample.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample2/IEXAMPLE2.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample2/IEXAMPLE2.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample2/IExample2.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample2/IExample2.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample2/IExample2.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample2/IExample2.idl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample2/IExample2.vbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample2/IExample2_extra.idl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/IEXAMPLE3.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/IEXAMPLE3.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/IExample3.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/IExample3.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/IExample3.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/IExample3.idl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/IExample3.vbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/PortNames.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3/PortNames.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3app/IEXAMPLE3APP.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3app/IEXAMPLE3APP.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample3app/IExampleApp3.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/IEXAMPLE4.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/IEXAMPLE4.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/IEnumVariant.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/IExample4.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/IExample4.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/IExample4.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/IExample4.idl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/IExample4.vbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/PortNames.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4/PortNames.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4app/IEXAMPLE4APP.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4app/IEXAMPLE4APP.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample4app/IExampleApp4.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IEXAMPLE5.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IEXAMPLE5.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IEnumVariant.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IEnumVariant.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IExample5.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IExample5.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IExample5.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IExample5.idl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/IExample5.vbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/NetCards .c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/NetCards.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/PortNames.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexample5/PortNames.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleapp/IExampleApp.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleapp/IExampleApp.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleapp/IExampleApp.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleapp2/IEXAMPLEAPP2.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleapp2/IEXAMPLEAPP2.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleapp2/IExampleApp2.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexamplecplusapp/IEXAMPLECPLUSAPP.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexamplecplusapp/IEXAMPLECPLUSAPP.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexamplecplusapp/IExampleCPlusApp.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts/IExampleEvts.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts/IExampleEvts.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts/IExampleEvts.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts/IExampleEvts.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts/IExampleEvts.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2/IExampleEvts.vbs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2/IExampleEvts2.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2/IExampleEvts2.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2/IExampleEvts2.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2/IExampleEvts2.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2/IExampleEvts2.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2/IExampleEvts2.idl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2app/IExampleEvts2App.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2app/IExampleEvts2App.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevts2app/IExampleEvts2App.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevtsapp/IExampleEvtsApp.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevtsapp/IExampleEvtsApp.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleevtsapp/IExampleEvtsApp.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleexe/IEXAMPLEEXE.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleexe/IEXAMPLEEXE.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleexe/IExampleExe.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleexe/IExampleExe.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/iexampleexe/IExampleExe.idl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterface/IBase.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterface/IMultInterface.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterface/IMultInterface.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterface/IMultInterface.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterface/IMultInterface.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterface/IMultInterface2.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterface/ISub1.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterface/ISub2.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterfaceapp/IMultInterfaceApp.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterfaceapp/IMultInterfaceApp.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/imultinterfaceapp/IMultInterfaceApp.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/isort/ISORT.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/isort/ISORT.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/isort/ISort.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/isort/ISort.def" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/isort/ISort.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/isortapp/ISortApp.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/isortapp/ISortApp.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/isortapp/ISortApp.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/preface.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/readme.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample/RegIExample.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample/RegIExample.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample/RegIExample.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample2/REGIEXAMPLE2.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample2/REGIEXAMPLE2.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample2/RegIExample2.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample3/REGIEXAMPLE3.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample3/REGIEXAMPLE3.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexample3/RegIExample3.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexampleexe/REGIEXAMPLEEXE.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexampleexe/REGIEXAMPLEEXE.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/regiexampleexe/RegIExampleExe.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/server1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/table.htm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/unregiexample/UnregIExample.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/unregiexample/UnregIExample.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/unregiexample/UnregIExample.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/unregiexample2/UNREGIEXAMPLE2.dsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/unregiexample2/UNREGIEXAMPLE2.dsw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../com_in_c5_src/unregiexample2/UnregIExample2.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../invoke_wrap/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/KHOpenAPI.tlb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oleaut32.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dk_event.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/event.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/event_handle.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invoke_wrap/Cargo.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invoke_wrap/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invoke_wrap/src/lib.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/invoke_wrap/src/main.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oaidl_test/Cargo.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oaidl_test/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/oaidl_test/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/new_bridge.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/new_bridge.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/event_handle.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/event_handle.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/kiwoom_ctrl.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/kiwoom_ctrl.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ocidl.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ocidl.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,9 +76,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TEventHandler" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../invoke_wrap" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -264,6 +107,42 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Expand new_bridge::kiwoom_ctrl" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="expand --lib --color=always --theme=GitHub --tests kiwoom_ctrl" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Run invoke_fn" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="run --package invoke_fn --bin invoke_fn" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/invoke_fn" />
+      <envs />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Run oaidl_test" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="run --package oaidl_test --bin oaidl_test" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/oaidl_test" />
+      <envs />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run --package new_bridge --bin new_bridge" />
@@ -276,11 +155,13 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo Command.Run invoke_fn" />
+        <item itemvalue="Cargo Command.Run oaidl_test" />
+        <item itemvalue="Cargo Command.Expand new_bridge::kiwoom_ctrl" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -309,7 +190,17 @@
       <workItem from="1599842536123" duration="6947000" />
       <workItem from="1599882161685" duration="17185000" />
       <workItem from="1599902343472" duration="17784000" />
-      <workItem from="1599924123446" duration="25436000" />
+      <workItem from="1599924123446" duration="43852000" />
+      <workItem from="1600007426103" duration="2853000" />
+      <workItem from="1600075500131" duration="54000" />
+      <workItem from="1600086001572" duration="20797000" />
+      <workItem from="1600133072208" duration="2714000" />
+      <workItem from="1600155664111" duration="24561000" />
+      <workItem from="1600225343169" duration="25396000" />
+      <workItem from="1600272176526" duration="2551000" />
+      <workItem from="1600295947676" duration="3651000" />
+      <workItem from="1600345485324" duration="5003000" />
+      <workItem from="1600354291346" duration="457000" />
     </task>
     <task id="LOCAL-00001" summary="초기 구상">
       <created>1599822942663</created>
@@ -318,8 +209,32 @@
       <option name="project" value="LOCAL" />
       <updated>1599822942663</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="초기 구상 KH api 접속, 이벤트 수신 완료">
+      <created>1599978525599</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1599978525599</updated>
+    </task>
+    <task id="LOCAL-00003" summary="초기 구상 KH api 접속, 이벤트 수신 완료">
+      <created>1599978597013</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1599978597013</updated>
+    </task>
+    <task id="LOCAL-00004" summary="초기 구상 KH api 접속, 이벤트 수신 완료">
+      <created>1599978633728</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1599978633728</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -336,13 +251,14 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="초기 구상" />
-    <option name="LAST_COMMIT_MESSAGE" value="초기 구상" />
+    <MESSAGE value="초기 구상 KH api 접속, 이벤트 수신 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="초기 구상 KH api 접속, 이벤트 수신 완료" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="711" y="312" key="#Notifications" timestamp="1599822116775">
+    <state x="711" y="312" key="#Notifications" timestamp="1600354317661">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state x="711" y="312" key="#Notifications/0.0.1920.979@0.0.1920.979" timestamp="1599822116775" />
+    <state x="711" y="312" key="#Notifications/0.0.1920.979@0.0.1920.979" timestamp="1600354317661" />
     <state x="414" y="144" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599937906179">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
@@ -351,14 +267,14 @@
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="707" y="289" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.979@0.0.1920.979" timestamp="1599935637879" />
-    <state x="765" y="205" key="#com.intellij.ide.util.MemberChooser" timestamp="1599932143302">
+    <state x="765" y="205" key="#com.intellij.ide.util.MemberChooser" timestamp="1600258042214">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state x="765" y="205" key="#com.intellij.ide.util.MemberChooser/0.0.1920.979@0.0.1920.979" timestamp="1599932143302" />
-    <state x="740" y="244" key="FileChooserDialogImpl" timestamp="1599926165085">
+    <state x="765" y="205" key="#com.intellij.ide.util.MemberChooser/0.0.1920.979@0.0.1920.979" timestamp="1600258042214" />
+    <state x="740" y="244" key="FileChooserDialogImpl" timestamp="1600086345100">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state x="740" y="244" key="FileChooserDialogImpl/0.0.1920.979@0.0.1920.979" timestamp="1599926165085" />
+    <state x="740" y="244" key="FileChooserDialogImpl/0.0.1920.979@0.0.1920.979" timestamp="1600086345100" />
     <state x="834" y="386" key="Github.ShareDialog" timestamp="1599822091304">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
@@ -367,34 +283,50 @@
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="762" y="186" key="Github.UntrackedFilesDialog/0.0.1920.979@0.0.1920.979" timestamp="1599822103731" />
-    <state width="1877" height="150" key="GridCell.Tab.0.bottom" timestamp="1599978186687">
+    <state width="1921" height="269" key="GridCell.Tab.0.bottom" timestamp="1600354748432">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.0.bottom/0.0.1920.979@0.0.1920.979" timestamp="1599978186687" />
-    <state width="1877" height="150" key="GridCell.Tab.0.center" timestamp="1599978186687">
+    <state width="1921" height="269" key="GridCell.Tab.0.bottom/0.0.1920.979@0.0.1920.979" timestamp="1600354748432" />
+    <state width="1921" height="269" key="GridCell.Tab.0.center" timestamp="1600354748432">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.0.center/0.0.1920.979@0.0.1920.979" timestamp="1599978186687" />
-    <state width="1877" height="150" key="GridCell.Tab.0.left" timestamp="1599978186687">
+    <state width="1921" height="269" key="GridCell.Tab.0.center/0.0.1920.979@0.0.1920.979" timestamp="1600354748432" />
+    <state width="1921" height="269" key="GridCell.Tab.0.left" timestamp="1600354748432">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.0.left/0.0.1920.979@0.0.1920.979" timestamp="1599978186687" />
-    <state width="1877" height="150" key="GridCell.Tab.0.right" timestamp="1599978186687">
+    <state width="1921" height="269" key="GridCell.Tab.0.left/0.0.1920.979@0.0.1920.979" timestamp="1600354748432" />
+    <state width="1921" height="269" key="GridCell.Tab.0.right" timestamp="1600354748432">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1877" height="150" key="GridCell.Tab.0.right/0.0.1920.979@0.0.1920.979" timestamp="1599978186687" />
+    <state width="1921" height="269" key="GridCell.Tab.0.right/0.0.1920.979@0.0.1920.979" timestamp="1600354748432" />
+    <state width="1877" height="323" key="GridCell.Tab.1.bottom" timestamp="1600348344246">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state width="1877" height="323" key="GridCell.Tab.1.bottom/0.0.1920.979@0.0.1920.979" timestamp="1600348344246" />
+    <state width="1877" height="323" key="GridCell.Tab.1.center" timestamp="1600348344246">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state width="1877" height="323" key="GridCell.Tab.1.center/0.0.1920.979@0.0.1920.979" timestamp="1600348344246" />
+    <state width="1877" height="323" key="GridCell.Tab.1.left" timestamp="1600348344246">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state width="1877" height="323" key="GridCell.Tab.1.left/0.0.1920.979@0.0.1920.979" timestamp="1600348344246" />
+    <state width="1877" height="323" key="GridCell.Tab.1.right" timestamp="1600348344246">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state width="1877" height="323" key="GridCell.Tab.1.right/0.0.1920.979@0.0.1920.979" timestamp="1600348344246" />
     <state x="763" y="209" key="RollbackChangesDialog" timestamp="1599297987575">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="763" y="209" key="RollbackChangesDialog/0.0.1920.979@0.0.1920.979" timestamp="1599297987575" />
-    <state x="461" y="133" key="SettingsEditor" timestamp="1599822660125">
+    <state x="461" y="133" key="SettingsEditor" timestamp="1600102242203">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state x="461" y="133" key="SettingsEditor/0.0.1920.979@0.0.1920.979" timestamp="1599822660125" />
-    <state x="552" y="222" key="Vcs.Push.Dialog.v2" timestamp="1599822955132">
+    <state x="461" y="133" key="SettingsEditor/0.0.1920.979@0.0.1920.979" timestamp="1600102242203" />
+    <state x="552" y="222" key="Vcs.Push.Dialog.v2" timestamp="1599985163278">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state x="552" y="222" key="Vcs.Push.Dialog.v2/0.0.1920.979@0.0.1920.979" timestamp="1599822955132" />
+    <state x="552" y="222" key="Vcs.Push.Dialog.v2/0.0.1920.979@0.0.1920.979" timestamp="1599985163278" />
     <state x="92" y="92" width="1736" height="795" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599677747129">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
@@ -411,5 +343,16 @@
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="729" y="378" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1920.979@0.0.1920.979" timestamp="1599822689783" />
+    <state x="623" y="209" width="672" height="678" key="search.everywhere.popup" timestamp="1600345925401">
+      <screen x="0" y="0" width="1920" height="979" />
+    </state>
+    <state x="623" y="209" width="672" height="678" key="search.everywhere.popup/0.0.1920.979@0.0.1920.979" timestamp="1600345925401" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CargoCommandRunConfiguration">
+        <watch expression="pDispParams-&gt;rgvarg-&gt;n1.__0" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

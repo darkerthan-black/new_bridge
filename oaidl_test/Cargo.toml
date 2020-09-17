@@ -1,0 +1,12 @@
+[package]
+name = "oaidl_test"
+version = "0.1.0"
+authors = ["darkerthan-black/new_bridge <lookingsteel@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+oaidl = "0.2"
+widestring = "0.4.2"
+winapi = {version = "0.3.9", features =["oaidl"]}
