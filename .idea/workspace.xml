@@ -25,8 +25,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdfd89d0-d3cb-43f2-b23d-74f1ba1a0666" name="Default Changelist" comment="초기 구상 KH api 접속, 이벤트 수신 완료, 이벤트 함수 호출부 구현 완료.  invoke_wrap 매크로 수정 완료. 함수 구현 완료.">
+      <change beforePath="$PROJECT_DIR$/../TEventHandler/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../invoke_wrap/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/kiwoom_ctrl.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/kiwoom_ctrl.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/event_handle.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/event_handle.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +190,8 @@
       <workItem from="1600345485324" duration="5003000" />
       <workItem from="1600354291346" duration="10140000" />
       <workItem from="1600365273364" duration="771000" />
-      <workItem from="1600388928444" duration="2205000" />
+      <workItem from="1600388928444" duration="4549000" />
+      <workItem from="1600407977897" duration="4680000" />
     </task>
     <task id="LOCAL-00001" summary="초기 구상">
       <created>1599822942663</created>
@@ -246,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600365766315</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="초기 구상 KH api 접속, 이벤트 수신 완료, 이벤트 함수 호출부 구현 완료.  invoke_wrap 매크로 수정 완료. 함수 구현 완료.">
+      <created>1600403414747</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600403414747</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,22 +312,22 @@
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="762" y="186" key="Github.UntrackedFilesDialog/0.0.1920.979@0.0.1920.979" timestamp="1599822103731" />
-    <state width="1877" height="269" key="GridCell.Tab.0.bottom" timestamp="1600366052060">
+    <state width="1877" height="269" key="GridCell.Tab.0.bottom" timestamp="1600406863103">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.0.bottom/0.0.1920.979@0.0.1920.979" timestamp="1600366052060" />
-    <state width="1877" height="269" key="GridCell.Tab.0.center" timestamp="1600366052060">
+    <state width="1877" height="269" key="GridCell.Tab.0.bottom/0.0.1920.979@0.0.1920.979" timestamp="1600406863103" />
+    <state width="1877" height="269" key="GridCell.Tab.0.center" timestamp="1600406863103">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.0.center/0.0.1920.979@0.0.1920.979" timestamp="1600366052060" />
-    <state width="1877" height="269" key="GridCell.Tab.0.left" timestamp="1600366052060">
+    <state width="1877" height="269" key="GridCell.Tab.0.center/0.0.1920.979@0.0.1920.979" timestamp="1600406863103" />
+    <state width="1877" height="269" key="GridCell.Tab.0.left" timestamp="1600406863103">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.0.left/0.0.1920.979@0.0.1920.979" timestamp="1600366052060" />
-    <state width="1877" height="269" key="GridCell.Tab.0.right" timestamp="1600366052060">
+    <state width="1877" height="269" key="GridCell.Tab.0.left/0.0.1920.979@0.0.1920.979" timestamp="1600406863103" />
+    <state width="1877" height="269" key="GridCell.Tab.0.right" timestamp="1600406863103">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state width="1877" height="269" key="GridCell.Tab.0.right/0.0.1920.979@0.0.1920.979" timestamp="1600366052060" />
+    <state width="1877" height="269" key="GridCell.Tab.0.right/0.0.1920.979@0.0.1920.979" timestamp="1600406863103" />
     <state width="1877" height="323" key="GridCell.Tab.1.bottom" timestamp="1600348344246">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
@@ -342,10 +352,10 @@
       <screen x="0" y="0" width="1920" height="979" />
     </state>
     <state x="461" y="133" key="SettingsEditor/0.0.1920.979@0.0.1920.979" timestamp="1600102242203" />
-    <state x="552" y="222" key="Vcs.Push.Dialog.v2" timestamp="1600365771622">
+    <state x="552" y="222" key="Vcs.Push.Dialog.v2" timestamp="1600403417790">
       <screen x="0" y="0" width="1920" height="979" />
     </state>
-    <state x="552" y="222" key="Vcs.Push.Dialog.v2/0.0.1920.979@0.0.1920.979" timestamp="1600365771622" />
+    <state x="552" y="222" key="Vcs.Push.Dialog.v2/0.0.1920.979@0.0.1920.979" timestamp="1600403417790" />
     <state x="92" y="92" width="1736" height="795" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1599677747129">
       <screen x="0" y="0" width="1920" height="979" />
     </state>

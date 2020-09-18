@@ -139,12 +139,12 @@ impl IDispatch for EventHandle {
                                             *((*v)[3]).n1.n2().n3.lVal(),
                                             *((*v)[2]).n1.n2().n3.bstrVal(),
                                             *((*v)[1]).n1.n2().n3.bstrVal(),
-                                            *((*v)[0]).n1.n2().n3.bstrVal(),
+                                            *((*v)[0]).n1.n2().n3.bstrVal()
 
                 ),
                 0x2 => self.OnReceiveRealData(*((*v)[2]).n1.n2().n3.bstrVal(),
                                               *((*v)[1]).n1.n2().n3.bstrVal(),
-                                              *((*v)[0]).n1.n2().n3.bstrVal(),),
+                                              *((*v)[0]).n1.n2().n3.bstrVal()),
                 0x3 => self.OnReceiveMsg(
                     *((*v)[3]).n1.n2().n3.bstrVal(),
                     *((*v)[2]).n1.n2().n3.bstrVal(),
